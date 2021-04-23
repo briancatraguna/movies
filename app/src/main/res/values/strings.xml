@@ -16,4 +16,5 @@
     <string name="dummy_stars">6.0</string>
     <string name="dummy_overview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum libero neque, dictum accumsan velit aliquet a. Cras vehicula metus quis odio suscipit, sagittis ultrices leo porta. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
     <string name="cast">Cast</string>
+    <string name="your_profile">Your Profile</string>
 </resources>

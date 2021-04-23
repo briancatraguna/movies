@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".profile.ProfileActivity">
 
+    <include android:id="@+id/toolbar_profile" layout="@layout/toolbar_profile"/>
+
+    
+
 </androidx.constraintlayout.widget.ConstraintLayout>
