@@ -4,10 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_color_bg"
     tools:context=".profile.ProfileActivity">
 
     <include android:id="@+id/toolbar_profile" layout="@layout/toolbar_profile"/>
 
-    
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circleImageView"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/me"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_profile" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/circleImageView">
+
+        <TableRow
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/name_row"
+                android:textSize="20sp"
+                android:fontFamily="@font/josefinsans_semibold"
+                android:textColor="@color/text"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="@string/brian_mohammed_catraguna"
+                android:textSize="20sp"
+                android:fontFamily="@font/josefinsana_regular"
+                android:textColor="@color/text"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/email"
+                android:textSize="20sp"
+                android:fontFamily="@font/josefinsans_semibold"
+                android:textColor="@color/text"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:text="@string/my_email"
+                android:textSize="20sp"
+                android:fontFamily="@font/josefinsana_regular"
+                android:textColor="@color/text"/>
+        </TableRow>
+
+
+    </TableLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

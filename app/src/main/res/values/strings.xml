@@ -17,4 +17,8 @@
     <string name="dummy_overview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum libero neque, dictum accumsan velit aliquet a. Cras vehicula metus quis odio suscipit, sagittis ultrices leo porta. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
     <string name="cast">Cast</string>
     <string name="your_profile">Your Profile</string>
+    <string name="name_row">Name:</string>
+    <string name="brian_mohammed_catraguna">Brian Mohammed Catraguna</string>
+    <string name="email">Email:</string>
+    <string name="my_email">briancatraguna@rocketmail.com</string>
 </resources>

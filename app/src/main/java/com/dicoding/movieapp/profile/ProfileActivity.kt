@@ -12,6 +12,11 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
+        val backButton = binding.toolbarProfile.backButton
         setContentView(binding.root)
+
+        backButton.setOnClickListener{
+            finish()
+        }
     }
 }
