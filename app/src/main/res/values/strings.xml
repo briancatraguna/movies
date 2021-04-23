@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="movies">Movies</string>
+    <string name="tv_shows">TV Shows</string>
+    <string name="hello">Hello Brian!</string>
+    <string name="name">Brian</string>
+    <string name="watch">Watch your favorite movie</string>
+    <string name="title">Title</string>
+    <string name="duration">duration</string>
+    <string name="rating">rating</string>
+    <string name="seasons">seasons</string>
+    <string name="episodes">episodes</string>
+    <string name="author">By Author</string>
+    <string name="watch_trailer">Watch trailer</string>
+    <string name="overview">Overview</string>
+    <string name="dummy_stars">6.0</string>
+    <string name="dummy_overview">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vestibulum libero neque, dictum accumsan velit aliquet a. Cras vehicula metus quis odio suscipit, sagittis ultrices leo porta. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</string>
+    <string name="cast">Cast</string>
+</resources>
