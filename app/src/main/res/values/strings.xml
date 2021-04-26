@@ -21,4 +21,6 @@
     <string name="brian_mohammed_catraguna">Brian Mohammed Catraguna</string>
     <string name="email">Email:</string>
     <string name="my_email">briancatraguna@rocketmail.com</string>
+    <string name="top_picks">Top Picks</string>
+    <string name="search_hint">Search for movies or TV shows...</string>
 </resources>
