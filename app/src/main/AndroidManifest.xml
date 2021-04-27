@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/movie_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieApp">
-        <activity android:name=".detail_tvshow.DetailShowActivity"></activity>
+        <activity android:name=".searchresult.SearchResultActivity"></activity>
+        <activity android:name=".detail_tvshow.DetailShowActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".detail_movie.DetailMovieActivity" />
         <activity android:name=".home.HomeActivity" />
