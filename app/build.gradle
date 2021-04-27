@@ -8,6 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+        buildConfigField('String','MOVIE_TOKEN','"7fad718afb38c7fe3fbe9da94e0d54e6"')
         applicationId "com.dicoding.movieapp"
         minSdkVersion 21
         targetSdkVersion 30
@@ -49,6 +50,10 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     //testing
     testImplementation "junit:junit:$junitVersion"

@@ -23,4 +23,5 @@
     <string name="my_email">briancatraguna@rocketmail.com</string>
     <string name="top_picks">Top Picks</string>
     <string name="search_hint">Search for movies or TV shows...</string>
+    <string name="search_results">Search Results</string>
 </resources>
