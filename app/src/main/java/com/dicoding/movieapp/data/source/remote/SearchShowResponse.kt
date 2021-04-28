@@ -11,7 +11,7 @@ data class SearchShowResponse(
 	val totalPages: Int? = null,
 
 	@field:SerializedName("results")
-	val results: List<ShowsItem?>? = null,
+	val results: List<ShowsItem>? = null,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int? = null

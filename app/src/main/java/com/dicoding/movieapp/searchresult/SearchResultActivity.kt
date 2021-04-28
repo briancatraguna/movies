@@ -4,12 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.movieapp.data.source.remote.*
 import com.dicoding.movieapp.databinding.ActivitySearchResultBinding
 import com.dicoding.movieapp.viewmodel.ViewModelFactory
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class SearchResultActivity : AppCompatActivity() {
 
@@ -31,7 +27,7 @@ class SearchResultActivity : AppCompatActivity() {
             searchResultActivity.testIntent.text = movies[0].overview
         })
 
-        viewModel.getStatus().observe(this,{status->
+        viewModel.getStatusMovies().observe(this,{ status->
             if (status){
                 searchResultActivity.progressBar.visibility = View.VISIBLE
             } else {

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.dicoding.movieapp.data.source.remote.MoviesItem
 import com.dicoding.movieapp.data.source.remote.Repository
+import com.dicoding.movieapp.data.source.remote.ShowsItem
 
 class SearchResultViewModel(private val repository: Repository): ViewModel() {
 
@@ -11,8 +12,16 @@ class SearchResultViewModel(private val repository: Repository): ViewModel() {
         return repository.getMovies(search)
     }
 
-    fun getStatus(): LiveData<Boolean>{
-        return repository.getLoadingStatus()
+    fun getStatusMovies(): LiveData<Boolean>{
+        return repository.getLoadingStatusMovies()
+    }
+
+    fun getShows(search: String): LiveData<List<ShowsItem>>{
+        return repository.getShows(search)
+    }
+
+    fun getStatusShows(): LiveData<Boolean>{
+        return repository.getLoadingStatusShows()
     }
 
 }
