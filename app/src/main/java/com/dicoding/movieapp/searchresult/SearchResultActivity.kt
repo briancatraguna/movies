@@ -2,11 +2,10 @@ package com.dicoding.movieapp.searchresult
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dicoding.movieapp.data.source.remote.ApiConfig
-import com.dicoding.movieapp.data.source.remote.MoviesItem
-import com.dicoding.movieapp.data.source.remote.RemoteDataSource
-import com.dicoding.movieapp.data.source.remote.SearchMovieResponse
+import androidx.lifecycle.ViewModelProvider
+import com.dicoding.movieapp.data.source.remote.*
 import com.dicoding.movieapp.databinding.ActivitySearchResultBinding
+import com.dicoding.movieapp.viewmodel.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,9 +23,12 @@ class SearchResultActivity : AppCompatActivity() {
         searchResultActivity = ActivitySearchResultBinding.inflate(layoutInflater)
         setContentView(searchResultActivity.root)
 
-        val query = intent.getStringExtra(EXTRA_SEARCH)
-
-        searchResultActivity.testIntent.text = "hello"
+        val query = intent.getStringExtra(EXTRA_SEARCH).toString()
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[SearchResultViewModel::class.java]
+        viewModel.getMovies(query).observe(this,{movies ->
+            searchResultActivity.testIntent.text = movies[0].overview
+        })
 
         searchResultActivity.toolbarSearchResults.backButton.setOnClickListener{
             finish()
