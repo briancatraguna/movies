@@ -1,5 +1,6 @@
 package com.dicoding.movieapp.data.source.remote
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
@@ -11,10 +12,12 @@ class RemoteDataSource(){
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _movies = MutableLiveData<MoviesItem>()
-    val movies: LiveData<MoviesItem> = _movies
+    private val _movies = MutableLiveData<List<MoviesItem>>()
+    val movies: LiveData<List<MoviesItem>> = _movies
 
     companion object {
+        private const val TAG = "RemoteDataSource"
+
         @Volatile
         private var instance: RemoteDataSource? = null
 
@@ -26,25 +29,23 @@ class RemoteDataSource(){
             }
     }
 
-    fun getMovies(callback: (List<MoviesItem>) -> Unit) {
-        val client = ApiConfig.getApiService().getMovies("john")
-        client.enqueue(object : Callback<SearchMovieResponse> {
-            override fun onResponse(
-                    call: Call<SearchMovieResponse>,
-                    response: Response<SearchMovieResponse>
-            ) {
-                var listMovies: ArrayList<MoviesItem> = ArrayList<MoviesItem>()
-                if (response.isSuccessful) {
-                    val rawList = response.body()?.results!!
-                    for (item in rawList) {
-                        listMovies.add(item)
-                    }
+    fun findMovies(search: String){
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getMovies(search)
+        client.enqueue(object: Callback<SearchMovieResponse>{
+            override fun onResponse(call: Call<SearchMovieResponse>, response: Response<SearchMovieResponse>) {
+                if (response.isSuccessful){
+                    val result = response.body()?.results
+                    _movies.value = result
+                    _isLoading.value = false
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
                 }
-                callback(listMovies)
             }
 
             override fun onFailure(call: Call<SearchMovieResponse>, t: Throwable) {
-                callback(emptyList()) // or throw error or use Result structure
+                _isLoading.value = false
+                Log.e(TAG,"onFailure: ${t.message.toString()}")
             }
 
         })
