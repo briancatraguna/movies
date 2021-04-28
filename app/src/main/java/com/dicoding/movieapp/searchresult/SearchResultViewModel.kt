@@ -11,4 +11,8 @@ class SearchResultViewModel(private val repository: Repository): ViewModel() {
         return repository.getMovies(search)
     }
 
+    fun getStatus(): LiveData<Boolean>{
+        return repository.getLoadingStatus()
+    }
+
 }

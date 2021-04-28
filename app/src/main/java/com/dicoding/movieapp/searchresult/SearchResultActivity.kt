@@ -2,6 +2,7 @@ package com.dicoding.movieapp.searchresult
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.dicoding.movieapp.data.source.remote.*
 import com.dicoding.movieapp.databinding.ActivitySearchResultBinding
@@ -28,6 +29,14 @@ class SearchResultActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this,factory)[SearchResultViewModel::class.java]
         viewModel.getMovies(query).observe(this,{movies ->
             searchResultActivity.testIntent.text = movies[0].overview
+        })
+
+        viewModel.getStatus().observe(this,{status->
+            if (status){
+                searchResultActivity.progressBar.visibility = View.VISIBLE
+            } else {
+                searchResultActivity.progressBar.visibility = View.GONE
+            }
         })
 
         searchResultActivity.toolbarSearchResults.backButton.setOnClickListener{

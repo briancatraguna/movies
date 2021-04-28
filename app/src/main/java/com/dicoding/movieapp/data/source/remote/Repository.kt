@@ -19,4 +19,8 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
         remoteDataSource.findMovies(search)
         return remoteDataSource.movies
     }
+
+    fun getLoadingStatus(): LiveData<Boolean>{
+        return remoteDataSource.isLoading
+    }
 }
