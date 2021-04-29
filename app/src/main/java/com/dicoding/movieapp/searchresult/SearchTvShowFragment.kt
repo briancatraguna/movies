@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.movieapp.R
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.movieapp.databinding.FragmentSearchTvShowBinding
+import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
 class SearchTvShowFragment : Fragment() {
 
@@ -22,7 +23,18 @@ class SearchTvShowFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         query = arguments?.getString(SearchResultActivity.EXTRA_SEARCH)
         searchTvShowFragmentBinding = FragmentSearchTvShowBinding.inflate(layoutInflater,container,false)
-        searchTvShowFragmentBinding.tvTvshowFragment.text = query
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        val viewModel = ViewModelProvider(requireActivity(),factory)[SearchResultViewModel::class.java]
+        viewModel.getShows(query!!).observe(this,{shows ->
+            searchTvShowFragmentBinding.tvTvshowFragment.text = shows[0].overview
+        })
+        viewModel.getStatusMovies().observe(this,{status ->
+            if (status){
+                searchTvShowFragmentBinding.progressBar.visibility = View.VISIBLE
+            } else {
+                searchTvShowFragmentBinding.progressBar.visibility = View.GONE
+            }
+        })
         return searchTvShowFragmentBinding.root
     }
 

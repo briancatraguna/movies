@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.movieapp.R
+import androidx.lifecycle.ViewModelProvider
 import com.dicoding.movieapp.databinding.FragmentSearchMoviesBinding
+import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
 class SearchMoviesFragment : Fragment() {
 
@@ -22,12 +23,19 @@ class SearchMoviesFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         query = arguments?.getString(SearchResultActivity.EXTRA_SEARCH)
         searchMoviesFragmentBinding = FragmentSearchMoviesBinding.inflate(layoutInflater,container,false)
-        searchMoviesFragmentBinding.tvMoviesFragment.text = query
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        val viewModel = ViewModelProvider(requireActivity(),factory)[SearchResultViewModel::class.java]
+        viewModel.getMovies(query!!).observe(this,{movies ->
+            searchMoviesFragmentBinding.tvMoviesFragment.text = movies[0].overview
+        })
+        viewModel.getStatusMovies().observe(this,{status ->
+            if (status){
+                searchMoviesFragmentBinding.progressBar.visibility = View.VISIBLE
+            } else {
+                searchMoviesFragmentBinding.progressBar.visibility = View.GONE
+            }
+        })
         return searchMoviesFragmentBinding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
 }
