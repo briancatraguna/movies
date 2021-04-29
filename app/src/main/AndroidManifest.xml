@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dicoding.movieapp">
+    package="com.dicoding.movieapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -10,13 +10,16 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/movie_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MovieApp">
-        <activity android:name=".searchresult.SearchResultActivity"></activity>
+        android:theme="@style/Theme.MovieApp" >
+        <activity android:name=".searchresult.detailshow.DetailSearchShowActivity" >
+        </activity>
+        <activity android:name=".searchresult.detailmovie.DetailSearchMovieActivity" />
+        <activity android:name=".searchresult.SearchResultActivity" />
         <activity android:name=".detail_tvshow.DetailShowActivity" />
         <activity android:name=".profile.ProfileActivity" />
         <activity android:name=".detail_movie.DetailMovieActivity" />
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".splashscreen.SplashActivity">
+        <activity android:name=".splashscreen.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

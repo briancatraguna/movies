@@ -1,5 +1,6 @@
 package com.dicoding.movieapp.searchresult
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
 import com.dicoding.movieapp.data.source.remote.MoviesItem
 import com.dicoding.movieapp.databinding.ItemSearchBinding
+import com.dicoding.movieapp.searchresult.detailmovie.DetailSearchMovieActivity
 
 class ListSearchMoviesAdapter: RecyclerView.Adapter<ListSearchMoviesAdapter.ListViewHolder>() {
 
@@ -34,6 +36,11 @@ class ListSearchMoviesAdapter: RecyclerView.Adapter<ListSearchMoviesAdapter.List
                         .load(IMG_BASE_URL+movie.backdropPath)
                         .apply(RequestOptions().override(400,400))
                         .into(imageContainer)
+                }
+                itemView.setOnClickListener{
+                    val intent = Intent(itemView.context, DetailSearchMovieActivity::class.java)
+                    intent.putExtra(DetailSearchMovieActivity.EXTRA_MOVIE_ID,movie.id)
+                    itemView.context.startActivity(intent)
                 }
             }
         }
