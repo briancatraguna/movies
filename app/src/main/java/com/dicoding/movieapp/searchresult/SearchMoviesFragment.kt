@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.movieapp.databinding.FragmentSearchMoviesBinding
 import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
@@ -25,8 +26,12 @@ class SearchMoviesFragment : Fragment() {
         searchMoviesFragmentBinding = FragmentSearchMoviesBinding.inflate(layoutInflater,container,false)
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(requireActivity(),factory)[SearchResultViewModel::class.java]
+        val rvMovies = searchMoviesFragmentBinding.rvMovies
+        rvMovies.layoutManager = LinearLayoutManager(context)
+        val listMovieAdapter = ListSearchMoviesAdapter()
         viewModel.getMovies(query!!).observe(this,{movies ->
-            searchMoviesFragmentBinding.tvMoviesFragment.text = movies[0].overview
+            listMovieAdapter.setData(movies)
+            rvMovies.adapter = listMovieAdapter
         })
         viewModel.getStatusMovies().observe(this,{status ->
             if (status){

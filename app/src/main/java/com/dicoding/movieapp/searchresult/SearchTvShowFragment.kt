@@ -26,7 +26,7 @@ class SearchTvShowFragment : Fragment() {
         val factory = ViewModelFactory.getInstance(requireActivity())
         val viewModel = ViewModelProvider(requireActivity(),factory)[SearchResultViewModel::class.java]
         viewModel.getShows(query!!).observe(this,{shows ->
-            searchTvShowFragmentBinding.tvTvshowFragment.text = shows[0].overview
+            val showList = shows
         })
         viewModel.getStatusMovies().observe(this,{status ->
             if (status){
