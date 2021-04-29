@@ -22,10 +22,12 @@ class SearchResultActivity : AppCompatActivity() {
         setContentView(searchResultActivity.root)
 
         val query = intent.getStringExtra(EXTRA_SEARCH).toString()
-        val factory = ViewModelFactory.getInstance(this)
-        val viewModel = ViewModelProvider(this,factory)[SearchResultViewModel::class.java]
+        val bundle = Bundle()
+        bundle.putString(EXTRA_SEARCH,query)
+
 
         val sectionsPagerAdapter = SearchSectionsPagerAdapter(this,supportFragmentManager)
+        sectionsPagerAdapter.setBundle(bundle)
         searchResultActivity.viewPager.adapter = sectionsPagerAdapter
         searchResultActivity.tabs.setupWithViewPager(searchResultActivity.viewPager)
 

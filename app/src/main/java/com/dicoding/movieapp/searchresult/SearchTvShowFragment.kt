@@ -11,6 +11,7 @@ import com.dicoding.movieapp.databinding.FragmentSearchTvShowBinding
 class SearchTvShowFragment : Fragment() {
 
     private lateinit var searchTvShowFragmentBinding: FragmentSearchTvShowBinding
+    private var query: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +20,9 @@ class SearchTvShowFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        query = arguments?.getString(SearchResultActivity.EXTRA_SEARCH)
         searchTvShowFragmentBinding = FragmentSearchTvShowBinding.inflate(layoutInflater,container,false)
+        searchTvShowFragmentBinding.tvTvshowFragment.text = query
         return searchTvShowFragmentBinding.root
     }
 

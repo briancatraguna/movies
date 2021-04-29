@@ -1,6 +1,7 @@
 package com.dicoding.movieapp.searchresult
 
 import android.content.Context
+import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -9,6 +10,12 @@ import com.dicoding.movieapp.R
 
 class SearchSectionsPagerAdapter(private val mContext: Context, fm: FragmentManager): FragmentPagerAdapter(fm,
         BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+
+    private var bundle: Bundle? = null
+
+    fun setBundle(bundle: Bundle){
+        this.bundle = bundle
+    }
 
     companion object {
         @StringRes
@@ -21,10 +28,20 @@ class SearchSectionsPagerAdapter(private val mContext: Context, fm: FragmentMana
     }
 
     override fun getItem(position: Int): Fragment {
-        return when (position){
-            0 -> SearchMoviesFragment()
-            1 -> SearchTvShowFragment()
-            else -> Fragment()
+        when (position){
+            0 -> {
+                val movieFragment = SearchMoviesFragment()
+                movieFragment.arguments = this.bundle
+                return movieFragment
+            }
+            1 -> {
+                val showFragment = SearchTvShowFragment()
+                showFragment.arguments = this.bundle
+                return showFragment
+            }
+            else -> {
+                return Fragment()
+            }
         }
     }
 
