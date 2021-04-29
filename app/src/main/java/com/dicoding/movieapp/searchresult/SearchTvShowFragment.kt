@@ -32,6 +32,11 @@ class SearchTvShowFragment : Fragment() {
         viewModel.getShows(query!!).observe(this,{shows ->
             listShowsAdapter.setData(shows)
             rvShows.adapter = listShowsAdapter
+            if (shows.size == 0){
+                searchTvShowFragmentBinding.noResults.visibility = View.VISIBLE
+            } else {
+                searchTvShowFragmentBinding.noResults.visibility = View.GONE
+            }
         })
         viewModel.getStatusMovies().observe(this,{status ->
             if (status){

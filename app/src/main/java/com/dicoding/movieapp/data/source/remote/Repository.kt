@@ -16,7 +16,8 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     fun getMovies(search: String): LiveData<List<MoviesItem>> {
-        remoteDataSource.findMovies(search)
+        val apiQuery = search.replace(" ","+")
+        remoteDataSource.findMovies(apiQuery)
         return remoteDataSource.movies
     }
 
@@ -25,7 +26,8 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     }
 
     fun getShows(search: String): LiveData<List<ShowsItem>>{
-        remoteDataSource.findShows(search)
+        val apiQuery = search.replace(" ","+")
+        remoteDataSource.findShows(apiQuery)
         return remoteDataSource.shows
     }
 

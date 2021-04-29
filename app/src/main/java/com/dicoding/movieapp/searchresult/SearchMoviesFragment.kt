@@ -32,6 +32,11 @@ class SearchMoviesFragment : Fragment() {
         viewModel.getMovies(query!!).observe(this,{movies ->
             listMovieAdapter.setData(movies)
             rvMovies.adapter = listMovieAdapter
+            if (movies.size == 0){
+                searchMoviesFragmentBinding.noResults.visibility = View.VISIBLE
+            } else {
+                searchMoviesFragmentBinding.noResults.visibility = View.GONE
+            }
         })
         viewModel.getStatusMovies().observe(this,{status ->
             if (status){
