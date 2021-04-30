@@ -19,6 +19,11 @@ interface ApiService {
 
     @GET("3/movie/{id}?api_key=${BuildConfig.MOVIE_TOKEN}")
     fun getMovieById(
-        @Query("id") id: String
+        @Path("id") id: String
     ):Call<SearchDetailMovieResponse>
+
+    @GET("3/tv/{id}?api_key=${BuildConfig.MOVIE_TOKEN}")
+    fun getShowById(
+            @Path("id") id: String
+    ):Call<SearchDetailShowResponse>
 }

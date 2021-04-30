@@ -34,4 +34,14 @@ class Repository private constructor(private val remoteDataSource: RemoteDataSou
     fun getLoadingStatusShows(): LiveData<Boolean>{
         return remoteDataSource.isLoadingShows
     }
+
+    fun getMovieDetailsById(id: String): LiveData<SearchDetailMovieResponse>{
+        remoteDataSource.getMovieDetailsbyId(id)
+        return remoteDataSource.detailMovies
+    }
+
+    fun getShowDetailsById(id: String): LiveData<SearchDetailShowResponse>{
+        remoteDataSource.getShowDetailsbyId(id)
+        return remoteDataSource.detailShows
+    }
 }

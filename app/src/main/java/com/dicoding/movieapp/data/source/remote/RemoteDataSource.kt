@@ -21,6 +21,12 @@ class RemoteDataSource(){
     private val _shows = MutableLiveData<List<ShowsItem>>()
     val shows: LiveData<List<ShowsItem>> = _shows
 
+    private val _detailMovies = MutableLiveData<SearchDetailMovieResponse>()
+    val detailMovies: LiveData<SearchDetailMovieResponse> = _detailMovies
+
+    private val _detailShows = MutableLiveData<SearchDetailShowResponse>()
+    val detailShows: LiveData<SearchDetailShowResponse> = _detailShows
+
     companion object {
         private const val TAG = "RemoteDataSource"
 
@@ -72,6 +78,49 @@ class RemoteDataSource(){
             }
 
             override fun onFailure(call: Call<SearchShowResponse>, t: Throwable) {
+                _isLoadingShows.value = false
+                Log.e(TAG,"onFailure: ${t.message.toString()}")
+            }
+
+        })
+    }
+
+    fun getMovieDetailsbyId(id: String){
+        _isLoadingMovies.value = true
+        val client = ApiConfig.getApiService().getMovieById(id)
+        client.enqueue(object : Callback<SearchDetailMovieResponse> {
+            override fun onResponse(call: Call<SearchDetailMovieResponse>, response: Response<SearchDetailMovieResponse>) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    _detailMovies.value = result
+                    _isLoadingMovies.value = false
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SearchDetailMovieResponse>, t: Throwable) {
+                _isLoadingMovies.value = false
+                Log.e(TAG,"onFailure: ${t.message.toString()}")
+            }
+        })
+    }
+
+    fun getShowDetailsbyId(id: String){
+        _isLoadingShows.value = true
+        val client = ApiConfig.getApiService().getShowById(id)
+        client.enqueue(object : Callback<SearchDetailShowResponse>{
+            override fun onResponse(call: Call<SearchDetailShowResponse>, response: Response<SearchDetailShowResponse>) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    _detailShows.value = result
+                    _isLoadingShows.value = false
+                } else {
+                    Log.e(TAG,"onFailure: ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<SearchDetailShowResponse>, t: Throwable) {
                 _isLoadingShows.value = false
                 Log.e(TAG,"onFailure: ${t.message.toString()}")
             }
