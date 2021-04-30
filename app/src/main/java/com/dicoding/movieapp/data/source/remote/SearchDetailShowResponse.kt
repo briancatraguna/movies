@@ -34,6 +34,44 @@ data class SearchDetailShowResponse(
 	val status: String? = null
 )
 
+data class ProductionCompaniesItem(
+	val logoPath: String? = null,
+	val name: String? = null,
+	val id: Int? = null,
+	val originCountry: String? = null
+)
+
+data class CreatedByItem(
+	val gender: Int? = null,
+	val creditId: String? = null,
+	val name: String? = null,
+	val profilePath: Any? = null,
+	val id: Int? = null
+)
+
+data class SpokenLanguagesItem(
+	val name: String? = null,
+	val iso6391: String? = null,
+	val englishName: String? = null
+)
+
+data class GenresItem(
+	val name: String? = null,
+	val id: Int? = null
+)
+
+data class ProductionCountriesItem(
+	val iso31661: String? = null,
+	val name: String? = null
+)
+
+data class NetworksItem(
+	val logoPath: String? = null,
+	val name: String? = null,
+	val id: Int? = null,
+	val originCountry: String? = null
+)
+
 data class LastEpisodeToAir(
 	val productionCode: String? = null,
 	val airDate: String? = null,
@@ -47,37 +85,6 @@ data class LastEpisodeToAir(
 	val voteCount: Int? = null
 )
 
-data class SpokenLanguagesItem(
-	val name: String? = null,
-	val iso6391: String? = null,
-	val englishName: String? = null
-)
-
-data class ProductionCountriesItem(
-	val iso31661: String? = null,
-	val name: String? = null
-)
-
-data class GenresItem(
-	val name: String? = null,
-	val id: Int? = null
-)
-
-data class CreatedByItem(
-	val gender: Int? = null,
-	val creditId: String? = null,
-	val name: String? = null,
-	val profilePath: Any? = null,
-	val id: Int? = null
-)
-
-data class NetworksItem(
-	val logoPath: String? = null,
-	val name: String? = null,
-	val id: Int? = null,
-	val originCountry: String? = null
-)
-
 data class SeasonsItem(
 	val airDate: String? = null,
 	val overview: String? = null,
@@ -86,12 +93,5 @@ data class SeasonsItem(
 	val seasonNumber: Int? = null,
 	val id: Int? = null,
 	val posterPath: Any? = null
-)
-
-data class ProductionCompaniesItem(
-	val logoPath: String? = null,
-	val name: String? = null,
-	val id: Int? = null,
-	val originCountry: String? = null
 )
 

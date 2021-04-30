@@ -38,7 +38,7 @@ class ListSearchShowsAdapter: RecyclerView.Adapter<ListSearchShowsAdapter.ListVi
                 }
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context,DetailSearchShowActivity::class.java)
-                    intent.putExtra(DetailSearchShowActivity.EXTRA_SHOW_ID,show.id)
+                    intent.putExtra(DetailSearchShowActivity.EXTRA_SHOW_ID,show.id.toString())
                     itemView.context.startActivity(intent)
                 }
             }

@@ -39,7 +39,7 @@ class ListSearchMoviesAdapter: RecyclerView.Adapter<ListSearchMoviesAdapter.List
                 }
                 itemView.setOnClickListener{
                     val intent = Intent(itemView.context, DetailSearchMovieActivity::class.java)
-                    intent.putExtra(DetailSearchMovieActivity.EXTRA_MOVIE_ID,movie.id)
+                    intent.putExtra(DetailSearchMovieActivity.EXTRA_MOVIE_ID,movie.id.toString())
                     itemView.context.startActivity(intent)
                 }
             }
