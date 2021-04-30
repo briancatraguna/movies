@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -14,6 +15,7 @@ import com.dicoding.movieapp.data.source.remote.SearchDetailMovieResponse
 import com.dicoding.movieapp.databinding.ActivityDetailSearchMovieBinding
 import com.dicoding.movieapp.searchresult.SearchResultViewModel
 import com.dicoding.movieapp.viewmodel.ViewModelFactory
+import java.lang.Exception
 
 class DetailSearchMovieActivity : AppCompatActivity() {
 
@@ -48,6 +50,9 @@ class DetailSearchMovieActivity : AppCompatActivity() {
                 .load(IMG_BASE_URL+movie.posterPath)
                 .apply(RequestOptions().override(500,500))
                 .into(binding.imgPoster)
+        if (movie.posterPath == null){
+            binding.imgPoster.setImageResource(R.drawable.ic_broken_image)
+        }
         binding.length.text = "${movie.runtime} m"
         binding.popularity.text = movie.popularity.toString()
         if (movie.adult == true){
@@ -56,8 +61,12 @@ class DetailSearchMovieActivity : AppCompatActivity() {
             binding.imgSafe.setImageResource(R.drawable.ic_safe_for_kids)
         }
         binding.imgPoster.setOnClickListener{
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie.homepage))
-            startActivity(intent)
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(movie.homepage))
+                startActivity(intent)
+            } catch (e: Exception){
+                Toast.makeText(this,"No Homepage Found!",Toast.LENGTH_SHORT).show()
+            }
         }
         binding.progressBar.visibility = View.GONE
     }

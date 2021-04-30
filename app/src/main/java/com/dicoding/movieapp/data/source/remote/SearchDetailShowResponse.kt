@@ -1,97 +1,234 @@
 package com.dicoding.movieapp.data.source.remote
 
+import com.google.gson.annotations.SerializedName
+
 data class SearchDetailShowResponse(
-	val originalLanguage: String? = null,
-	val numberOfEpisodes: Int? = null,
-	val networks: List<NetworksItem?>? = null,
-	val type: String? = null,
-	val backdropPath: String? = null,
-	val genres: List<GenresItem?>? = null,
-	val popularity: Double? = null,
-	val productionCountries: List<ProductionCountriesItem?>? = null,
-	val id: Int? = null,
-	val numberOfSeasons: Int? = null,
-	val voteCount: Int? = null,
-	val firstAirDate: String? = null,
-	val overview: String? = null,
-	val seasons: List<SeasonsItem?>? = null,
-	val languages: List<String?>? = null,
-	val createdBy: List<CreatedByItem?>? = null,
-	val lastEpisodeToAir: LastEpisodeToAir? = null,
-	val posterPath: String? = null,
-	val originCountry: List<String?>? = null,
-	val spokenLanguages: List<SpokenLanguagesItem?>? = null,
-	val productionCompanies: List<ProductionCompaniesItem?>? = null,
-	val originalName: String? = null,
-	val voteAverage: Double? = null,
-	val name: String? = null,
-	val tagline: String? = null,
-	val episodeRunTime: List<Int?>? = null,
-	val nextEpisodeToAir: Any? = null,
-	val inProduction: Boolean? = null,
-	val lastAirDate: String? = null,
-	val homepage: String? = null,
-	val status: String? = null
-)
 
-data class ProductionCompaniesItem(
-	val logoPath: String? = null,
-	val name: String? = null,
-	val id: Int? = null,
-	val originCountry: String? = null
-)
+	@field:SerializedName("original_language")
+	val originalLanguage: String,
 
-data class CreatedByItem(
-	val gender: Int? = null,
-	val creditId: String? = null,
-	val name: String? = null,
-	val profilePath: Any? = null,
-	val id: Int? = null
+	@field:SerializedName("number_of_episodes")
+	val numberOfEpisodes: Int,
+
+	@field:SerializedName("networks")
+	val networks: List<NetworksItem>,
+
+	@field:SerializedName("type")
+	val type: String,
+
+	@field:SerializedName("backdrop_path")
+	val backdropPath: String,
+
+	@field:SerializedName("genres")
+	val genres: List<GenresItem>,
+
+	@field:SerializedName("popularity")
+	val popularity: Double,
+
+	@field:SerializedName("production_countries")
+	val productionCountries: List<ProductionCountriesItem>,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("number_of_seasons")
+	val numberOfSeasons: Int,
+
+	@field:SerializedName("vote_count")
+	val voteCount: Int,
+
+	@field:SerializedName("first_air_date")
+	val firstAirDate: String,
+
+	@field:SerializedName("overview")
+	val overview: String,
+
+	@field:SerializedName("seasons")
+	val seasons: List<SeasonsItem>,
+
+	@field:SerializedName("languages")
+	val languages: List<String>,
+
+	@field:SerializedName("created_by")
+	val createdBy: List<CreatedByItem>,
+
+	@field:SerializedName("last_episode_to_air")
+	val lastEpisodeToAir: LastEpisodeToAir,
+
+	@field:SerializedName("poster_path")
+	val posterPath: String,
+
+	@field:SerializedName("origin_country")
+	val originCountry: List<String>,
+
+	@field:SerializedName("spoken_languages")
+	val spokenLanguages: List<SpokenLanguagesItem>,
+
+	@field:SerializedName("production_companies")
+	val productionCompanies: List<ProductionCompaniesItem>,
+
+	@field:SerializedName("original_name")
+	val originalName: String,
+
+	@field:SerializedName("vote_average")
+	val voteAverage: Double,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("tagline")
+	val tagline: String,
+
+	@field:SerializedName("episode_run_time")
+	val episodeRunTime: List<Int>,
+
+	@field:SerializedName("next_episode_to_air")
+	val nextEpisodeToAir: Any,
+
+	@field:SerializedName("in_production")
+	val inProduction: Boolean,
+
+	@field:SerializedName("last_air_date")
+	val lastAirDate: String,
+
+	@field:SerializedName("homepage")
+	val homepage: String,
+
+	@field:SerializedName("status")
+	val status: String
 )
 
 data class SpokenLanguagesItem(
-	val name: String? = null,
-	val iso6391: String? = null,
-	val englishName: String? = null
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("iso_639_1")
+	val iso6391: String,
+
+	@field:SerializedName("english_name")
+	val englishName: String
 )
 
-data class GenresItem(
-	val name: String? = null,
-	val id: Int? = null
+data class ProductionCompaniesItem(
+
+	@field:SerializedName("logo_path")
+	val logoPath: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("origin_country")
+	val originCountry: String
 )
 
-data class ProductionCountriesItem(
-	val iso31661: String? = null,
-	val name: String? = null
-)
+data class CreatedByItem(
 
-data class NetworksItem(
-	val logoPath: String? = null,
-	val name: String? = null,
-	val id: Int? = null,
-	val originCountry: String? = null
-)
+	@field:SerializedName("gender")
+	val gender: Int,
 
-data class LastEpisodeToAir(
-	val productionCode: String? = null,
-	val airDate: String? = null,
-	val overview: String? = null,
-	val episodeNumber: Int? = null,
-	val voteAverage: Int? = null,
-	val name: String? = null,
-	val seasonNumber: Int? = null,
-	val id: Int? = null,
-	val stillPath: String? = null,
-	val voteCount: Int? = null
+	@field:SerializedName("credit_id")
+	val creditId: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("profile_path")
+	val profilePath: Any,
+
+	@field:SerializedName("id")
+	val id: Int
 )
 
 data class SeasonsItem(
-	val airDate: String? = null,
-	val overview: String? = null,
-	val episodeCount: Int? = null,
-	val name: String? = null,
-	val seasonNumber: Int? = null,
-	val id: Int? = null,
-	val posterPath: Any? = null
+
+	@field:SerializedName("air_date")
+	val airDate: String,
+
+	@field:SerializedName("overview")
+	val overview: String,
+
+	@field:SerializedName("episode_count")
+	val episodeCount: Int,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("season_number")
+	val seasonNumber: Int,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("poster_path")
+	val posterPath: String
 )
 
+data class NetworksItem(
+
+	@field:SerializedName("logo_path")
+	val logoPath: String,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("origin_country")
+	val originCountry: String
+)
+
+data class LastEpisodeToAir(
+
+	@field:SerializedName("production_code")
+	val productionCode: String,
+
+	@field:SerializedName("air_date")
+	val airDate: String,
+
+	@field:SerializedName("overview")
+	val overview: String,
+
+	@field:SerializedName("episode_number")
+	val episodeNumber: Int,
+
+	@field:SerializedName("vote_average")
+	val voteAverage: Int,
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("season_number")
+	val seasonNumber: Int,
+
+	@field:SerializedName("id")
+	val id: Int,
+
+	@field:SerializedName("still_path")
+	val stillPath: String,
+
+	@field:SerializedName("vote_count")
+	val voteCount: Int
+)
+
+data class GenresItem(
+
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("id")
+	val id: Int
+)
+
+data class ProductionCountriesItem(
+
+	@field:SerializedName("iso_3166_1")
+	val iso31661: String,
+
+	@field:SerializedName("name")
+	val name: String
+)

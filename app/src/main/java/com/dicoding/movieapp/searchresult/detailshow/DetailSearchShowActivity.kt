@@ -1,8 +1,11 @@
 package com.dicoding.movieapp.searchresult.detailshow
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -44,6 +47,17 @@ class DetailSearchShowActivity : AppCompatActivity() {
                 .load(IMG_BASE_URL+show.posterPath)
                 .apply(RequestOptions().override(500,500))
                 .into(binding.imgPoster)
+        binding.imgPoster.setOnClickListener{
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(show.homepage))
+                startActivity(intent)
+            } catch (e: Exception){
+                Toast.makeText(this,"No Homepage Found!",Toast.LENGTH_SHORT).show()
+            }
+        }
+        if (show.posterPath == "null"){
+            binding.imgPoster.setImageResource(R.drawable.ic_broken_image)
+        }
         binding.length.text = show.numberOfSeasons.toString()
         binding.popularity.text = show.popularity.toString()
         binding.episodes.text = show.numberOfEpisodes.toString()
