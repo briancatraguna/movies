@@ -13,6 +13,7 @@ class DetailSearchShowActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_SHOW_ID = "extra_show_id"
+        private const val IMG_BASE_URL = "https://image.tmdb.org/t/p/w500"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +24,8 @@ class DetailSearchShowActivity : AppCompatActivity() {
 
         val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(this,factory)[DetailShowViewModel::class.java]
-        binding.tvTitle.text = id
+        viewModel.getShowById(id).observe(this,{show->
+            binding.tvTitle.text = show.name
+        })
     }
 }

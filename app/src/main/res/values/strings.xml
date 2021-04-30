@@ -28,4 +28,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="release_date">Release date</string>
     <string name="no_result">We\'re sorry! Your search did not match any of our data!</string>
+    <string name="length">Length</string>
+    <string name="adult">Adult</string>
+    <string name="popularity">Popularity</string>
+    <string name="dummy_length">1h 25m</string>
+    <string name="safe_for_kids">Safe for Kids</string>
+    <string name="dummy_popularity">59.85</string>
+    <string name="details">Details</string>
 </resources>
