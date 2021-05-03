@@ -3,7 +3,7 @@ package com.dicoding.movieapp.data.source.remote
 import androidx.lifecycle.LiveData
 
 
-class Repository private constructor(private val remoteDataSource: RemoteDataSource){
+class Repository(private val remoteDataSource: RemoteDataSource){
 
     companion object {
         @Volatile

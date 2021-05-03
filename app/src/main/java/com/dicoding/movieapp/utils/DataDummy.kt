@@ -2,6 +2,8 @@ package com.dicoding.movieapp.utils
 
 import com.dicoding.movieapp.data.MovieEntity
 import com.dicoding.movieapp.data.TVShowEntity
+import com.dicoding.movieapp.data.source.remote.MoviesItem
+import com.dicoding.movieapp.data.source.remote.ShowsItem
 
 object DataDummy {
 
@@ -127,4 +129,52 @@ object DataDummy {
         return tvShow
     }
 
+    fun generateFakeMovieResponse(): List<MoviesItem>{
+        val result = MoviesItem(
+                overview = "The men who made millions from a global economic meltdown.",
+                originalLanguage = "en",
+                originalTitle = "The Big Short",
+                video = false,
+                title = "The Big Short",
+                genreIds = listOf(35,18),
+                posterPath = "/isuQWbJPbjybBEWdcCaBUPmU0XO.jpg",
+                backdropPath = "/i7UCf0ysjbYYaqcSKUox9BJz4Kp.jpg",
+                releaseDate = "2015-12-11",
+                popularity = 28.271,
+                voteAverage = 7.3,
+                id = 318846,
+                adult = false,
+                voteCount = 6625
+        )
+        val myList = listOf<MoviesItem>(result)
+        return myList
+    }
+
+    fun generateFakeMovieStatus(): Boolean{
+        return true
+    }
+
+    fun generateFakeShowResponse(): List<ShowsItem>{
+        val result = ShowsItem(
+                firstAirDate = "2020-01-31",
+                overview = "In a colorful Seoul neighborhood, an ex-con and his friends fight a mighty foe to make their ambitious dreams for their street bar a reality.",
+                originalLanguage = "ko",
+                genreIds = listOf(18),
+                posterPath = "/uW91bKQhdkwPLAE2lJJkY5xdyJg.jpg",
+                originCountry = listOf("KR"),
+                backdropPath = "/rtYQCa2NzX8RspbOmwfAla6BemO.jpg",
+                originalName = "이태원 클라쓰",
+                popularity = 22.649,
+                voteAverage = 8.4,
+                name = "Itaewon Class",
+                id = 96162,
+                voteCount = 47
+        )
+        val myList = listOf<ShowsItem>(result)
+        return myList
+    }
+
+    fun generateFakeShowStatus(): Boolean{
+        return true
+    }
 }
