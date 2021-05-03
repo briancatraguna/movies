@@ -2,8 +2,7 @@ package com.dicoding.movieapp.utils
 
 import com.dicoding.movieapp.data.MovieEntity
 import com.dicoding.movieapp.data.TVShowEntity
-import com.dicoding.movieapp.data.source.remote.MoviesItem
-import com.dicoding.movieapp.data.source.remote.ShowsItem
+import com.dicoding.movieapp.data.source.remote.*
 
 object DataDummy {
 
@@ -176,5 +175,133 @@ object DataDummy {
 
     fun generateFakeShowStatus(): Boolean{
         return true
+    }
+
+    fun generateFakeMovieDetailResponse(): SearchDetailMovieResponse{
+        val detail = SearchDetailMovieResponse(
+                originalLanguage = "en",
+                imdbId = "tt1596363",
+                video = false,
+                title = "The Big Short",
+                backdropPath = "/i7UCf0ysjbYYaqcSKUox9BJz4Kp.jpg",
+                revenue = 133346506,
+                genres = listOf(MovieGenresItem(
+                        name = "Comedy",
+                        id = 35
+                )),
+                popularity = 28.271,
+                movieProductionCountries = listOf(MovieProductionCountriesItem(
+                        iso31661 = "US",
+                        name = "United States of America"
+                )),
+                id = 318846,
+                voteCount = 6625,
+                budget = 28000000,
+                overview = "The men who made millions from a global economic meltdown.",
+                originalTitle = "The Big Short",
+                runtime = 131,
+                posterPath = "/isuQWbJPbjybBEWdcCaBUPmU0XO.jpg",
+                movieSpokenLanguages = listOf(MovieSpokenLanguagesItem(
+                        englishName = "English",
+                        iso6391 = "en",
+                        name = "English"
+                )),
+                movieProductionCompanies = listOf(MovieProductionCompaniesItem(
+                        logoPath = "/7PzJdsLGlR7oW4J0J5Xcd0pHGRg.png",
+                        name = "Regency Enterprises",
+                        id = 508,
+                        originCountry = "US"
+                )),
+                releaseDate = "2015-12-11",
+                voteAverage = 7.3,
+                belongsToCollection = null,
+                tagline = "The Big Short",
+                adult = false,
+                homepage = "http://www.thebigshortmovie.com",
+                status = "Released"
+        )
+        return detail
+    }
+
+    fun generateFakeShowDetailResponse(): SearchDetailShowResponse{
+        val detail = SearchDetailShowResponse(
+                originalLanguage = "ko",
+                numberOfEpisodes = 16,
+                networks = listOf(NetworksItem(
+                        logoPath = "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+                        name = "Netflix",
+                        id = 213,
+                        originCountry = ""
+                )),
+                type = "Scripted",
+                backdropPath = "/rtYQCa2NzX8RspbOmwfAla6BemO.jpg",
+                genres = listOf(GenresItem(
+                        name = "Drama",
+                        id = 18
+                )),
+                popularity = 22.649,
+                productionCountries = listOf(ProductionCountriesItem(
+                        iso31661 = "KR",
+                        name = "South Korea"
+                )),
+                id = 96162,
+                numberOfSeasons = 1,
+                voteCount = 47,
+                firstAirDate = "2020-01-31",
+                overview = "Yi-seo runs from Geun-won, who's out to put an end to everything. Desperate to salvage his crumbling legacy, Dae-hee heads to DanBam.",
+                seasons = listOf(SeasonsItem(
+                        airDate = "2020-01-25",
+                        overview = "",
+                        episodeCount = 1,
+                        name = "Specials",
+                        seasonNumber = 0,
+                        id = 155100,
+                        posterPath = null.toString()
+                )),
+                languages = listOf("ko","oj"),
+                createdBy = listOf(CreatedByItem(
+                        gender = 0,
+                        creditId = "5f477bbbefca000037bb99a9",
+                        name = "Gwang Jin",
+                        profilePath = null.toString(),
+                        id = 2756628
+                )),
+                lastEpisodeToAir = LastEpisodeToAir(
+                        productionCode = "",
+                        airDate = "2020-03-21",
+                        overview = "Yi-seo runs from Geun-won, who's out to put an end to everything. Desperate to salvage his crumbling legacy, Dae-hee heads to DanBam.",
+                        episodeNumber = 16,
+                        voteAverage = 0,
+                        name = "",
+                        seasonNumber = 1,
+                        id = 2192802,
+                        stillPath = "/bMRTSjadhgF8hZ4JbhXTCUalus.jpg",
+                        voteCount = 0
+                ),
+                posterPath = "/uW91bKQhdkwPLAE2lJJkY5xdyJg.jpg",
+                originCountry = listOf("KR"),
+                spokenLanguages = listOf(SpokenLanguagesItem(
+                        name = "한국어/조선말",
+                        iso6391 = "ko",
+                        englishName = "Korean"
+                )),
+                productionCompanies = listOf(ProductionCompaniesItem(
+                        logoPath = "/6ZtXJZsAJ4sQNM35ts1G3JeXaBQ.png",
+                        name = "Showbox",
+                        id = 3491,
+                        originCountry = "KR"
+                )),
+                originalName = "이태원 클라쓰",
+                voteAverage = 8.4,
+                name = "Itaewon Class",
+                tagline = "I want to live a life in which you can’t put a price on your convictions.",
+                episodeRunTime = listOf(0),
+                nextEpisodeToAir = null.toString(),
+                inProduction = false,
+                lastAirDate = "2020-03-21",
+                homepage = "http://tv.jtbc.joins.com/itaewonclass",
+                status = "Ended"
+        )
+        return detail
     }
 }
