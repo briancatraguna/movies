@@ -92,5 +92,40 @@ class SearchResultTest{
         onView(withId(R.id.popularity)).check(matches(isDisplayed()))
         onView(withId(R.id.popularity)).check(matches(withText("6382.461")))
     }
+    @Test
+    fun detailShows(){
+        //Check whether edit text search is displayed and type in 'Mortal Kombat'
+        onView(withId(R.id.edit_text_search)).check(matches(isDisplayed()))
+        onView(withId(R.id.edit_text_search)).perform(typeText("Itaewon Class"), closeSoftKeyboard())
+        //Check whether search button is displayed and click
+        onView(withId(R.id.btn_search)).check(matches(isDisplayed()))
+        onView(withId(R.id.btn_search)).perform(click())
+        //Click and go to details shows
+        onView(ViewMatchers.withText("TV Shows")).perform(click())
+        onView(withId(R.id.rv_shows)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0,click()))
+        //Poster
+        onView(withId(R.id.img_poster)).check(matches(isDisplayed()))
+        //Title
+        onView(withId(R.id.tv_title)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).check(matches(withText("Itaewon Class")))
+        //Release date
+        onView(withId(R.id.tv_release_date)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_release_date)).check(matches(withText("2020-01-31")))
+        //Rating
+        onView(withId(R.id.tv_rating)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_rating)).check(matches(withText("8.4")))
+        //Overview
+        onView(withId(R.id.tv_overview)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_overview)).check(matches(withText("In a colorful Seoul neighborhood, an ex-con and his friends fight a mighty foe to make their ambitious dreams for their street bar a reality.")))
+        //Seasons
+        onView(withId(R.id.length)).check(matches(isDisplayed()))
+        onView(withId(R.id.length)).check(matches(withText("1")))
+        //Episodes
+        onView(withId(R.id.episodes)).check(matches(isDisplayed()))
+        onView(withId(R.id.episodes)).check(matches(withText("16")))
+        //Popularity
+        onView(withId(R.id.popularity)).check(matches(isDisplayed()))
+        onView(withId(R.id.popularity)).check(matches(withText("17.846")))
+    }
 
 }
