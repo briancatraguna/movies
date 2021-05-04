@@ -3,6 +3,7 @@ package com.dicoding.movieapp.data.source.remote
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.dicoding.movieapp.utils.EspressoIdlingResources
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,6 +43,7 @@ class RemoteDataSource(){
     }
 
     fun findMovies(search: String){
+        EspressoIdlingResources.increment()
         _isLoadingMovies.value = true
         val client = ApiConfig.getApiService().getMovies(search)
         client.enqueue(object: Callback<SearchMovieResponse>{
@@ -50,20 +52,24 @@ class RemoteDataSource(){
                     val result = response.body()?.results
                     _movies.value = result
                     _isLoadingMovies.value = false
+                    EspressoIdlingResources.decrement()
                 } else {
                     Log.e(TAG,"onFailure: ${response.message()}")
+                    EspressoIdlingResources.decrement()
                 }
             }
 
             override fun onFailure(call: Call<SearchMovieResponse>, t: Throwable) {
                 _isLoadingMovies.value = false
                 Log.e(TAG,"onFailure: ${t.message.toString()}")
+                EspressoIdlingResources.decrement()
             }
 
         })
     }
 
     fun findShows(search: String){
+        EspressoIdlingResources.increment()
         _isLoadingShows.value = true
         val client = ApiConfig.getApiService().getShows(search)
         client.enqueue(object: Callback<SearchShowResponse>{
@@ -72,20 +78,24 @@ class RemoteDataSource(){
                     val result = response.body()?.results
                     _shows.value = result
                     _isLoadingShows.value = false
+                    EspressoIdlingResources.decrement()
                 } else {
                     Log.e(TAG,"onFailure: ${response.message()}")
+                    EspressoIdlingResources.decrement()
                 }
             }
 
             override fun onFailure(call: Call<SearchShowResponse>, t: Throwable) {
                 _isLoadingShows.value = false
                 Log.e(TAG,"onFailure: ${t.message.toString()}")
+                EspressoIdlingResources.decrement()
             }
 
         })
     }
 
     fun getMovieDetailsbyId(id: String){
+        EspressoIdlingResources.increment()
         _isLoadingMovies.value = true
         val client = ApiConfig.getApiService().getMovieById(id)
         client.enqueue(object : Callback<SearchDetailMovieResponse> {
@@ -94,19 +104,23 @@ class RemoteDataSource(){
                     val result = response.body()
                     _detailMovies.value = result
                     _isLoadingMovies.value = false
+                    EspressoIdlingResources.decrement()
                 } else {
                     Log.e(TAG,"onFailure: ${response.message()}")
+                    EspressoIdlingResources.decrement()
                 }
             }
 
             override fun onFailure(call: Call<SearchDetailMovieResponse>, t: Throwable) {
                 _isLoadingMovies.value = false
                 Log.e(TAG,"onFailure: ${t.message.toString()}")
+                EspressoIdlingResources.decrement()
             }
         })
     }
 
     fun getShowDetailsbyId(id: String){
+        EspressoIdlingResources.increment()
         _isLoadingShows.value = true
         val client = ApiConfig.getApiService().getShowById(id)
         client.enqueue(object : Callback<SearchDetailShowResponse>{
@@ -115,14 +129,17 @@ class RemoteDataSource(){
                     val result = response.body()
                     _detailShows.value = result
                     _isLoadingShows.value = false
+                    EspressoIdlingResources.decrement()
                 } else {
                     Log.e(TAG,"onFailure: ${response.message()}")
+                    EspressoIdlingResources.decrement()
                 }
             }
 
             override fun onFailure(call: Call<SearchDetailShowResponse>, t: Throwable) {
                 _isLoadingShows.value = false
                 Log.e(TAG,"onFailure: ${t.message.toString()}")
+                EspressoIdlingResources.decrement()
             }
 
         })

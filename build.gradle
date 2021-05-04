@@ -32,6 +32,7 @@ ext {
     androidCoreTestVersion = '2.1.0'
     mockitoVersion = '3.6.0'
     mockitoKotlinVersion = '2.2.0'
+    idleResourceVersion = '3.2.0'
 
     materialVersion = '1.2.1'
     recyclerViewVersion = '1.1.0'
