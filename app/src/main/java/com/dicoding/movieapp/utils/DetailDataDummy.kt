@@ -1,8 +1,8 @@
 package com.dicoding.movieapp.utils
 
-import com.dicoding.movieapp.data.ActorEntity
-import com.dicoding.movieapp.data.MovieDetailEntity
-import com.dicoding.movieapp.data.TVShowDetailEntity
+import com.dicoding.movieapp.data.source.local.ActorEntity
+import com.dicoding.movieapp.data.source.local.MovieDetailEntity
+import com.dicoding.movieapp.data.source.local.TVShowDetailEntity
 
 object DetailDataDummy {
     fun getMovieDetail():ArrayList<MovieDetailEntity>{

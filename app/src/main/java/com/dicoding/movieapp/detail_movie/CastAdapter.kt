@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
-import com.dicoding.movieapp.data.ActorEntity
+import com.dicoding.movieapp.data.source.local.ActorEntity
 
 class CastAdapter internal constructor(private val context: Context):BaseAdapter() {
     internal var actors = arrayListOf<ActorEntity>()

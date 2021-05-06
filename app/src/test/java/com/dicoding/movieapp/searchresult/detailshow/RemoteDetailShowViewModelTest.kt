@@ -3,7 +3,7 @@ package com.dicoding.movieapp.searchresult.detailshow
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dicoding.movieapp.data.source.remote.Repository
+import com.dicoding.movieapp.data.source.Repository
 import com.dicoding.movieapp.data.source.remote.SearchDetailShowResponse
 import com.dicoding.movieapp.utils.DataDummy
 import org.junit.Test
@@ -18,7 +18,7 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class DetailShowViewModelTest {
+class RemoteDetailShowViewModelTest {
 
     private lateinit var viewModel: DetailShowViewModel
 
@@ -42,9 +42,9 @@ class DetailShowViewModelTest {
         val detailShowExpectation = MutableLiveData<SearchDetailShowResponse>()
         detailShowExpectation.value = dummyDetailShows
 
-        `when`(repository.getShowDetailsById("123")).thenReturn(detailShowExpectation)
+        `when`(repository.getRemoteShowDetailsById("123")).thenReturn(detailShowExpectation)
         val detailShowReality = viewModel.getShowById("123")
-        verify(repository).getShowDetailsById("123")
+        verify(repository).getRemoteShowDetailsById("123")
         assertNotNull(detailShowReality.value)
         assertEquals(detailShowExpectation.value,detailShowReality.value)
 

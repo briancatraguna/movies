@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.dicoding.movieapp.data.source.remote.MoviesItem
-import com.dicoding.movieapp.data.source.remote.Repository
+import com.dicoding.movieapp.data.source.Repository
 import com.dicoding.movieapp.data.source.remote.ShowsItem
 import com.dicoding.movieapp.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
@@ -52,9 +52,9 @@ class SearchResultViewModelTest {
         val movieExpectation = MutableLiveData<List<MoviesItem>>()
         movieExpectation.value = dummyMovies
 
-        `when`(repository.getMovies("test")).thenReturn(movieExpectation)
+        `when`(repository.getRemoteMovies("test")).thenReturn(movieExpectation)
         val movieReality = viewModel.getMovies("test")
-        verify(repository).getMovies("test")
+        verify(repository).getRemoteMovies("test")
         assertNotNull(movieReality.value)
         assertEquals(movieExpectation.value,movieReality.value)
 
@@ -68,7 +68,7 @@ class SearchResultViewModelTest {
         val statusMoviesExpectation = MutableLiveData<Boolean>()
         statusMoviesExpectation.value = dummyStatusMovies
 
-        `when`(repository.getLoadingStatusMovies()).thenReturn(statusMoviesExpectation)
+        `when`(repository.getRemoteLoadingStatusMovies()).thenReturn(statusMoviesExpectation)
         val statusMoviesReality = viewModel.getStatusMovies()
         assertNotNull(statusMoviesReality.value)
         assertEquals(statusMoviesExpectation.value,statusMoviesReality.value)
@@ -83,9 +83,9 @@ class SearchResultViewModelTest {
         val showExpectation = MutableLiveData<List<ShowsItem>>()
         showExpectation.value = dummyShows
 
-        `when`(repository.getShows("test")).thenReturn(showExpectation)
+        `when`(repository.getRemoteShows("test")).thenReturn(showExpectation)
         val showReality = viewModel.getShows("test")
-        verify(repository).getShows("test")
+        verify(repository).getRemoteShows("test")
         assertNotNull(showReality.value)
         assertEquals(showExpectation.value,showReality.value)
 
@@ -99,7 +99,7 @@ class SearchResultViewModelTest {
         val statusShowsExpectation = MutableLiveData<Boolean>()
         statusShowsExpectation.value = dummyStatusShows
 
-        `when`(repository.getLoadingStatusShows()).thenReturn(statusShowsExpectation)
+        `when`(repository.getRemoteLoadingStatusShows()).thenReturn(statusShowsExpectation)
         val statusShowsReality = viewModel.getStatusShows()
         assertNotNull(statusShowsReality.value)
         assertEquals(statusShowsExpectation.value,statusShowsReality.value)

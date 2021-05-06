@@ -3,7 +3,7 @@ package com.dicoding.movieapp.searchresult.detailmovie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dicoding.movieapp.data.source.remote.Repository
+import com.dicoding.movieapp.data.source.Repository
 import com.dicoding.movieapp.data.source.remote.SearchDetailMovieResponse
 import com.dicoding.movieapp.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
@@ -16,10 +16,9 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.junit.MockitoJUnitRunner
-import java.util.*
 
 @RunWith(MockitoJUnitRunner::class)
-class DetailMovieViewModelTest {
+class RemoteDetailMovieViewModelTest {
 
     private lateinit var viewModel: DetailMovieViewModel
 
@@ -43,9 +42,9 @@ class DetailMovieViewModelTest {
         val detailMovieExpectation = MutableLiveData<SearchDetailMovieResponse>()
         detailMovieExpectation.value = dummyDetailMovie
 
-        `when`(repository.getMovieDetailsById("123")).thenReturn(detailMovieExpectation)
+        `when`(repository.getRemoteMovieDetailsById("123")).thenReturn(detailMovieExpectation)
         val detailMovieReality = viewModel.getMovieById("123")
-        verify(repository).getMovieDetailsById("123")
+        verify(repository).getRemoteMovieDetailsById("123")
         assertNotNull(detailMovieReality.value)
         assertEquals(detailMovieExpectation.value,detailMovieReality.value)
 

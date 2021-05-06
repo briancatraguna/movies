@@ -1,29 +1,59 @@
 package com.dicoding.movieapp.movies
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import com.dicoding.movieapp.data.source.Repository
+import com.dicoding.movieapp.data.source.local.LocalDataSource
+import com.dicoding.movieapp.data.source.local.MovieEntity
+import com.dicoding.movieapp.data.source.remote.RemoteDataSource
 import com.dicoding.movieapp.utils.DataDummy
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 
 import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
+import org.junit.runner.RunWith
+import org.mockito.Mock
+import org.mockito.Mockito.`when`
+import org.mockito.junit.MockitoJUnitRunner
+import java.util.*
 
+@RunWith(MockitoJUnitRunner::class)
 class MovieViewModelTest {
     private lateinit var mainViewModel: MovieViewModel
     private lateinit var dataDummy: DataDummy
-    private lateinit var idArray: Array<String>
+
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+
+    @Mock
+    private lateinit var repository: Repository
+
+    @Mock
+    private lateinit var moviesObserver: Observer<List<MovieEntity>>
 
     @Before
     fun init(){
-        mainViewModel = MovieViewModel()
+        mainViewModel = MovieViewModel(repository)
         dataDummy = DataDummy
-        idArray = arrayOf("m1","m2","m3","m4","m5","m6","m7","m8","m9","m10")
     }
 
     @Test
     fun getMovies() {
         //Expectation
-        val movieExpectation = dataDummy.generateMovies()
+        val expectedMovies = dataDummy.generateMovies()
+        val movieExpecation = MutableLiveData<List<MovieEntity>>()
+        movieExpecation.value = expectedMovies
         //Reality
+        `when`(repository.getLocalMovies()).thenReturn(movieExpecation)
         val movieReality = mainViewModel.getMovies()
-        assertEquals(movieExpectation,movieReality)
+        verify(repository).getLocalMovies()
+        assertNotNull(movieReality.value)
+        assertEquals(movieExpecation.value,movieReality.value)
+
+        mainViewModel.getMovies().observeForever(moviesObserver)
+        verify(moviesObserver).onChanged(expectedMovies)
     }
 }

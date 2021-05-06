@@ -1,12 +1,13 @@
 package com.dicoding.movieapp.movies
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.movieapp.data.MovieEntity
-import com.dicoding.movieapp.utils.DataDummy
+import com.dicoding.movieapp.data.source.local.MovieEntity
+import com.dicoding.movieapp.data.source.Repository
 
-class MovieViewModel:ViewModel() {
+class MovieViewModel(private val repository: Repository):ViewModel() {
 
-    fun getMovies(): ArrayList<MovieEntity>{
-        return DataDummy.generateMovies()
+    fun getMovies(): LiveData<List<MovieEntity>> {
+        return repository.getLocalMovies()
     }
 }

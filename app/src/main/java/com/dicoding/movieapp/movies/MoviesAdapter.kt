@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.movieapp.data.MovieEntity
+import com.dicoding.movieapp.data.source.local.MovieEntity
 import com.dicoding.movieapp.databinding.ItemsMoviesBinding
 import com.dicoding.movieapp.detail_movie.DetailMovieActivity
 

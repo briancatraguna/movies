@@ -4,18 +4,19 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
-import com.dicoding.movieapp.data.ActorEntity
-import com.dicoding.movieapp.data.TVShowDetailEntity
-import com.dicoding.movieapp.data.TVShowEntity
+import com.dicoding.movieapp.data.source.local.ActorEntity
+import com.dicoding.movieapp.data.source.local.TVShowDetailEntity
+import com.dicoding.movieapp.data.source.local.TVShowEntity
 import com.dicoding.movieapp.databinding.ActivityDetailShowBinding
 import com.dicoding.movieapp.detail_movie.CastAdapter
+import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
 class DetailShowActivity : AppCompatActivity() {
 
@@ -78,12 +79,14 @@ class DetailShowActivity : AppCompatActivity() {
     }
 
     private fun getShowBasicDetails(showId: String): TVShowEntity? {
-        val viewModel = DetailShowViewModel()
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[LocalDetailShowViewModel::class.java]
         return viewModel.getBasicShowDetailsById(showId)
     }
 
     private fun getShowDetails(showId: String): TVShowDetailEntity? {
-        val viewModel = DetailShowViewModel()
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[LocalDetailShowViewModel::class.java]
         return viewModel.getDetailsById(showId)
     }
 

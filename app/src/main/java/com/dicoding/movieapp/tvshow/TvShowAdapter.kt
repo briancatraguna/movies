@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.dicoding.movieapp.data.TVShowEntity
+import com.dicoding.movieapp.data.source.local.TVShowEntity
 import com.dicoding.movieapp.databinding.ItemTvShowsBinding
 import com.dicoding.movieapp.detail_tvshow.DetailShowActivity
 

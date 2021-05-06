@@ -4,18 +4,18 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
-import com.dicoding.movieapp.data.ActorEntity
-import com.dicoding.movieapp.data.MovieDetailEntity
-import com.dicoding.movieapp.data.MovieEntity
+import com.dicoding.movieapp.data.source.local.ActorEntity
+import com.dicoding.movieapp.data.source.local.MovieDetailEntity
+import com.dicoding.movieapp.data.source.local.MovieEntity
 import com.dicoding.movieapp.databinding.ActivityDetailMovieBinding
+import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -79,12 +79,14 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun getMovieBasicDetails(movieId: String): MovieEntity? {
-        val viewModel = DetailMovieViewModel()
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[LocalDetailMovieViewModel::class.java]
         return viewModel.getBasicMovieDetailsById(movieId)
     }
 
     private fun getMovieDetails(movieId: String): MovieDetailEntity? {
-        val viewModel = DetailMovieViewModel()
+        val factory = ViewModelFactory.getInstance(this)
+        val viewModel = ViewModelProvider(this,factory)[LocalDetailMovieViewModel::class.java]
         return viewModel.getDetailsById(movieId)
     }
 

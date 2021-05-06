@@ -1,7 +1,7 @@
 package com.dicoding.movieapp.utils
 
-import com.dicoding.movieapp.data.MovieEntity
-import com.dicoding.movieapp.data.TVShowEntity
+import com.dicoding.movieapp.data.source.local.MovieEntity
+import com.dicoding.movieapp.data.source.local.TVShowEntity
 import com.dicoding.movieapp.data.source.remote.*
 
 object DataDummy {

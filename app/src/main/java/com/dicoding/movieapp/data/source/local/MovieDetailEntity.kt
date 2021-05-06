@@ -1,4 +1,4 @@
-package com.dicoding.movieapp.data
+package com.dicoding.movieapp.data.source.local
 
 data class MovieDetailEntity(
     var movieId: String,

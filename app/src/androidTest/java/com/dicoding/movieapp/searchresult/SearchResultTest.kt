@@ -42,7 +42,7 @@ class SearchResultTest{
         onView(withId(R.id.btn_search)).perform(click())
         //Check whether RV is displayed
         onView(withId(R.id.rv_movies)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(15))
+        onView(withId(R.id.rv_movies)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(14))
     }
 
     @Test
@@ -56,7 +56,7 @@ class SearchResultTest{
         //Check whether RV is displayed
         onView(ViewMatchers.withText("TV Shows")).perform(click())
         onView(withId(R.id.rv_shows)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_shows)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(1))
+        onView(withId(R.id.rv_shows)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(0))
     }
 
     @Test
@@ -90,7 +90,6 @@ class SearchResultTest{
         onView(withId(R.id.img_safe)).check(matches(isDisplayed()))
         //Popularity
         onView(withId(R.id.popularity)).check(matches(isDisplayed()))
-        onView(withId(R.id.popularity)).check(matches(withText("6382.461")))
     }
     @Test
     fun detailShows(){
@@ -125,7 +124,6 @@ class SearchResultTest{
         onView(withId(R.id.episodes)).check(matches(withText("16")))
         //Popularity
         onView(withId(R.id.popularity)).check(matches(isDisplayed()))
-        onView(withId(R.id.popularity)).check(matches(withText("17.846")))
     }
 
 }

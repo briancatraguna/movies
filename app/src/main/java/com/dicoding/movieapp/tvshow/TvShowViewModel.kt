@@ -1,12 +1,13 @@
 package com.dicoding.movieapp.tvshow
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.dicoding.movieapp.data.TVShowEntity
-import com.dicoding.movieapp.utils.DataDummy
+import com.dicoding.movieapp.data.source.local.TVShowEntity
+import com.dicoding.movieapp.data.source.Repository
 
-class TvShowViewModel:ViewModel() {
+class TvShowViewModel(private val repository: Repository):ViewModel() {
 
-    fun getTvShows():ArrayList<TVShowEntity>{
-        return DataDummy.generateTvShows()
+    fun getTvShows(): LiveData<List<TVShowEntity>> {
+        return repository.getLocalShows()
     }
 }
