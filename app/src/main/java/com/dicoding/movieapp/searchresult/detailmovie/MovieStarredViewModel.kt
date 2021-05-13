@@ -16,4 +16,12 @@ class MovieStarredViewModel(application: Application): ViewModel() {
         mMovieRepository.delete(movie)
     }
 
+    fun isStarred(movie: MoviesRoomEntity): Boolean{
+        val allMovies = mMovieRepository.getAllMovies().value
+        if (allMovies?.contains(movie) == true){
+            return true
+        }
+        return false
+    }
+
 }

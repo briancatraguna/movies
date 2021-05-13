@@ -17,5 +17,13 @@ class ShowStarredViewModel(application: Application): ViewModel() {
         mShowRepository.delete(show)
     }
 
+    fun isStarred(show: TvShowsRoomEntity): Boolean{
+        val allShows = mShowRepository.getAllShows().value
+        if (allShows?.contains(show) == true){
+            return true
+        }
+        return false
+    }
+
 
 }
