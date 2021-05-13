@@ -14,5 +14,5 @@ interface TvShowsStarredDao {
     fun delete(show: TvShowsRoomEntity)
 
     @Query("SELECT * from tvshowsroomentity ORDER BY id ASC")
-    fun getAllMovies(): LiveData<List<TvShowsRoomEntity>>
+    fun getAllShows(): LiveData<List<TvShowsRoomEntity>>
 }
