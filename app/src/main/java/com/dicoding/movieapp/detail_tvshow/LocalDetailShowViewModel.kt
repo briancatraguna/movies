@@ -12,7 +12,7 @@ class LocalDetailShowViewModel(private val repository: Repository):ViewModel() {
         return repository.getLocalShows()
     }
     fun getBasicShowDetailsById(showId: String): TVShowEntity?{
-        return getShowBasicDetails().value?.firstOrNull(){
+        return getShowBasicDetails().value?.firstOrNull {
             it.showId == showId
         }
     }

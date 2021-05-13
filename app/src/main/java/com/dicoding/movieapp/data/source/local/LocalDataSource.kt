@@ -27,7 +27,7 @@ class LocalDataSource {
 
         fun getInstance():LocalDataSource =
                 instance ?: synchronized(this){
-                    instance?: LocalDataSource()?.apply {
+                    instance?: LocalDataSource().apply {
                         instance = this
                     }
                 }

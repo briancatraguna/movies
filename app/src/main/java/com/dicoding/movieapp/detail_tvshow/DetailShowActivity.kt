@@ -73,7 +73,7 @@ class DetailShowActivity : AppCompatActivity() {
         adapter.actors = castList
         listView.adapter = adapter
         binding.playButton.setOnClickListener{
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(details2?.trailerLink))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(details2.trailerLink))
             startActivity(intent)
         }
     }

@@ -12,7 +12,7 @@ class LocalDetailMovieViewModel(private val repository: Repository):ViewModel() 
         return repository.getLocalMovies()
     }
     fun getBasicMovieDetailsById(movieId: String): MovieEntity?{
-        return getMovieBasicDetails().value?.firstOrNull(){
+        return getMovieBasicDetails().value?.firstOrNull {
             it.movieId == movieId
         }
     }
@@ -21,7 +21,7 @@ class LocalDetailMovieViewModel(private val repository: Repository):ViewModel() 
         return repository.getLocalDetailMovies()
     }
     fun getDetailsById(movieId: String): MovieDetailEntity?{
-        return getMovieDetails().value?.firstOrNull(){
+        return getMovieDetails().value?.firstOrNull {
             it.movieId == movieId
         }
     }

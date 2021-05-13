@@ -15,11 +15,6 @@ class SearchMoviesFragment : Fragment() {
     private lateinit var searchMoviesFragmentBinding: FragmentSearchMoviesBinding
     private var query: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         query = arguments?.getString(SearchResultActivity.EXTRA_SEARCH)

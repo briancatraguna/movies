@@ -17,14 +17,6 @@ class MoviesFragment : Fragment() {
 
     private lateinit var fragmentMoviesBinding: FragmentMoviesBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-//
-//    val factory = ViewModelFactory.getInstance(requireActivity())
-//    val viewModel = ViewModelProvider(requireActivity(),factory)[SearchResultViewModel::class.java]
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -40,11 +40,11 @@ class CastAdapter internal constructor(private val context: Context):BaseAdapter
         return itemView
     }
 
-    private inner class ViewHolder internal constructor(view:View){
+    private inner class ViewHolder(view:View){
         private val txtName: TextView = view.findViewById(R.id.tv_actor)
         private val imgPhoto: ImageView = view.findViewById(R.id.img_actor)
 
-        internal fun bind(actor: ActorEntity){
+        fun bind(actor: ActorEntity){
             txtName.text = actor.actorName
             Glide.with(context)
                     .load(actor.actorPicture)

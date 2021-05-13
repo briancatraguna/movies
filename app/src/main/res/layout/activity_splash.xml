@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/josefinsans_semibold"
-            android:text="movies."
+            android:text="@string/movies_splash"
             android:textColor="@color/white"
             android:textSize="90sp" />
 

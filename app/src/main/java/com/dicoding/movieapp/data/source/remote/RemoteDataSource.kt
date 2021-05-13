@@ -8,7 +8,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RemoteDataSource(){
+class RemoteDataSource {
 
     private val _isLoadingMovies = MutableLiveData<Boolean>()
     val isLoadingMovies: LiveData<Boolean> = _isLoadingMovies

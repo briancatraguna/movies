@@ -47,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_movie_title" />
 
     <ImageView
+        android:contentDescription="@string/click_to_watch_trailer"
         android:id="@+id/img_trailer"
         android:layout_width="320dp"
         android:layout_height="180dp"

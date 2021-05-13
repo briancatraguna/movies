@@ -3,7 +3,6 @@
     <string name="movies">Movies</string>
     <string name="tv_shows">TV Shows</string>
     <string name="hello">Hello Brian!</string>
-    <string name="name">Brian</string>
     <string name="watch">Watch your favorite movie</string>
     <string name="title">Title</string>
     <string name="duration">duration</string>
@@ -25,14 +24,14 @@
     <string name="search_hint">Search for movies or TV shows...</string>
     <string name="search_results">Search Results</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="release_date">Release date</string>
     <string name="no_result">We\'re sorry! Your search did not match any of our data!</string>
     <string name="length">Length</string>
-    <string name="adult">Adult</string>
     <string name="popularity">Popularity</string>
     <string name="dummy_length">1h 25m</string>
     <string name="safe_for_kids">Safe for Kids</string>
     <string name="dummy_popularity">59.85</string>
     <string name="details">Details</string>
+    <string name="click_to_watch_trailer">Click to watch trailer!</string>
+    <string name="movies_splash">movies.</string>
 </resources>
