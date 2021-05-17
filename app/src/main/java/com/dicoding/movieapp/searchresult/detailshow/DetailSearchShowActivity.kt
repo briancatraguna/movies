@@ -10,13 +10,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
+import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.data.source.remote.SearchDetailShowResponse
 import com.dicoding.movieapp.databinding.ActivityDetailSearchShowBinding
+import com.dicoding.movieapp.searchresult.detailmovie.MovieStarredViewModel
 import com.dicoding.movieapp.viewmodel.ViewModelFactory
 
 class DetailSearchShowActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailSearchShowBinding
+    private lateinit var showsObject: TvShowsRoomEntity
+    private var statusFavorite = false
 
     companion object {
         const val EXTRA_SHOW_ID = "extra_show_id"
@@ -27,7 +31,7 @@ class DetailSearchShowActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailSearchShowBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.toolbar.toolbarTitle.text = "TV Show Details"
+        binding.toolbar.toolbarTitle.text = getString(R.string.tv_show_details)
         binding.progressBar.visibility = View.VISIBLE
         val id = intent.getStringExtra(EXTRA_SHOW_ID).toString()
 
@@ -35,7 +39,48 @@ class DetailSearchShowActivity : AppCompatActivity() {
         val viewModel = ViewModelProvider(this,factory)[DetailShowViewModel::class.java]
         viewModel.getShowById(id).observe(this,{show->
             populateView(show)
+            showsObject = TvShowsRoomEntity(
+                    showId = show.id,
+                    title = show.name,
+                    avatar = show.backdropPath,
+                    releaseDate = show.firstAirDate,
+                    rating = show.voteAverage
+            )
         })
+        setStatus(id.toInt())
+        val dbViewModel = ShowStarredViewModel(application)
+        binding.toolbar.imgStar.setOnClickListener {
+            statusFavorite != statusFavorite
+            if (statusFavorite){
+                dbViewModel.addShow(showsObject)
+                Toast.makeText(this,"Show added!",Toast.LENGTH_SHORT).show()
+            } else {
+                dbViewModel.delShow(showsObject)
+                Toast.makeText(this,"Deleted show!",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun setStatus(showId: Int) {
+        val dbViewModel = ShowStarredViewModel(application)
+        dbViewModel.readAllShows.observe(this,{shows->
+            for (show in shows){
+                val currentId = show.showId
+                if (currentId == showId){
+                    statusFavorite = true
+                    setStatusStarred(statusFavorite)
+                }
+            }
+        })
+        setStatusStarred(statusFavorite)
+    }
+
+    private fun setStatusStarred(starred: Boolean) {
+        if (starred){
+            binding.toolbar.imgStar.setImageResource(R.drawable.ic_star)
+        } else {
+            binding.toolbar.imgStar.setImageResource(R.drawable.ic_star_border)
+        }
     }
 
     private fun populateView(show: SearchDetailShowResponse) {

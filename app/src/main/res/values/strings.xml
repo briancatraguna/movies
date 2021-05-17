@@ -35,4 +35,5 @@
     <string name="click_to_watch_trailer">Click to watch trailer!</string>
     <string name="movies_splash">movies.</string>
     <string name="movie_details">Movie Details</string>
+    <string name="tv_show_details">TV Show Details</string>
 </resources>
