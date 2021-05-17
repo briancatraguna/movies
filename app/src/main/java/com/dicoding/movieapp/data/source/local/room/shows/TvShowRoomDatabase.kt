@@ -1,4 +1,4 @@
-package com.dicoding.movieapp.data.source.local.room
+package com.dicoding.movieapp.data.source.local.room.shows
 
 import android.content.Context
 import androidx.room.Database
@@ -14,7 +14,7 @@ abstract class TvShowRoomDatabase: RoomDatabase() {
         private var INSTANCE: TvShowRoomDatabase? = null
 
         @JvmStatic
-        fun getDatabase(context: Context): TvShowRoomDatabase{
+        fun getDatabase(context: Context): TvShowRoomDatabase {
             if (INSTANCE == null){
                 synchronized(TvShowRoomDatabase::class.java){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,

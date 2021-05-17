@@ -1,21 +1,18 @@
 package com.dicoding.movieapp.searchresult.detailmovie
 
 import android.content.Intent
-import android.content.LocusId
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dicoding.movieapp.R
-import com.dicoding.movieapp.data.source.local.room.MoviesRoomEntity
+import com.dicoding.movieapp.data.source.local.room.movies.MoviesRoomEntity
 import com.dicoding.movieapp.data.source.remote.SearchDetailMovieResponse
 import com.dicoding.movieapp.databinding.ActivityDetailSearchMovieBinding
-import com.dicoding.movieapp.searchresult.SearchResultViewModel
 import com.dicoding.movieapp.viewmodel.ViewModelFactory
 import java.lang.Exception
 

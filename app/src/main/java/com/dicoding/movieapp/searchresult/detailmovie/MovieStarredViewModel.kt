@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.movieapp.data.source.FavoriteMovieRepository
-import com.dicoding.movieapp.data.source.local.room.MovieRoomDatabase
-import com.dicoding.movieapp.data.source.local.room.MoviesRoomEntity
+import com.dicoding.movieapp.data.source.local.room.movies.MovieRoomDatabase
+import com.dicoding.movieapp.data.source.local.room.movies.MoviesRoomEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

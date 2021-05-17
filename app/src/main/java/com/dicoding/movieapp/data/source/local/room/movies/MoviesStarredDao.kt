@@ -1,4 +1,4 @@
-package com.dicoding.movieapp.data.source.local.room
+package com.dicoding.movieapp.data.source.local.room.movies
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

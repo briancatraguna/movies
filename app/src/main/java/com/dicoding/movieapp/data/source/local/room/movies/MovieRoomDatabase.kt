@@ -1,4 +1,4 @@
-package com.dicoding.movieapp.data.source.local.room
+package com.dicoding.movieapp.data.source.local.room.movies
 
 import android.content.Context
 import androidx.room.Database
@@ -13,7 +13,7 @@ abstract class MovieRoomDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: MovieRoomDatabase? = null
 
-        fun getDatabase(context: Context): MovieRoomDatabase{
+        fun getDatabase(context: Context): MovieRoomDatabase {
             val tempInstance = INSTANCE
             if (tempInstance!=null){
                 return tempInstance

@@ -1,12 +1,8 @@
 package com.dicoding.movieapp.data.source
 
-import android.app.Application
 import androidx.lifecycle.LiveData
-import com.dicoding.movieapp.data.source.local.room.MovieRoomDatabase
-import com.dicoding.movieapp.data.source.local.room.MoviesRoomEntity
-import com.dicoding.movieapp.data.source.local.room.MoviesStarredDao
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import com.dicoding.movieapp.data.source.local.room.movies.MoviesRoomEntity
+import com.dicoding.movieapp.data.source.local.room.movies.MoviesStarredDao
 
 class FavoriteMovieRepository(private val movieDao: MoviesStarredDao) {
 
