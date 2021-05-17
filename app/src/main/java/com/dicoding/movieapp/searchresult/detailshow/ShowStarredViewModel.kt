@@ -1,27 +1,36 @@
 package com.dicoding.movieapp.searchresult.detailshow
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dicoding.movieapp.data.source.FavoriteShowRepository
+import com.dicoding.movieapp.data.source.local.room.shows.TvShowRoomDatabase
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ShowStarredViewModel(application: Application): ViewModel() {
-    private val mShowRepository: FavoriteShowRepository = FavoriteShowRepository(application)
 
-    fun insert(show: TvShowsRoomEntity){
-        mShowRepository.insert(show)
+    val readAllShows: LiveData<List<TvShowsRoomEntity>>
+    private val repository: FavoriteShowRepository
+
+    init {
+        val showDao = TvShowRoomDatabase.getDatabase(application).tvShowsStarredDao()
+        repository = FavoriteShowRepository(showDao)
+        readAllShows = repository.readAllShows()
     }
 
-    fun delete(show: TvShowsRoomEntity){
-        mShowRepository.delete(show)
-    }
-
-    fun isShowStarred(show: TvShowsRoomEntity): Boolean{
-        val allShows = mShowRepository.getAllShows().value
-        if (allShows?.contains(show) == true){
-            return true
+    fun addShow(show: TvShowsRoomEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.addShows(show)
         }
-        return false
+    }
+
+    fun delShow(show: TvShowsRoomEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.delShows(show)
+        }
     }
 
 
