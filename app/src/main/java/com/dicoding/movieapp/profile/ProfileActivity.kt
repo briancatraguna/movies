@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.dicoding.movieapp.R
 import com.dicoding.movieapp.databinding.ActivityProfileBinding
+import com.dicoding.movieapp.home.SectionsPagerAdapter
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -18,5 +19,9 @@ class ProfileActivity : AppCompatActivity() {
         backButton.setOnClickListener{
             finish()
         }
+
+        val sectionsPagerAdapter = SectionsPagerAdapter(this,supportFragmentManager)
+        binding.viewPager.adapter = sectionsPagerAdapter
+        binding.tabFav.setupWithViewPager(binding.viewPager)
     }
 }
