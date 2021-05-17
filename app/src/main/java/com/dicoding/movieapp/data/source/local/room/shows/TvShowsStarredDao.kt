@@ -6,11 +6,11 @@ import androidx.room.*
 @Dao
 interface TvShowsStarredDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(show: TvShowsRoomEntity)
+    suspend fun insert(show: TvShowsRoomEntity)
 
     @Delete
-    fun delete(show: TvShowsRoomEntity)
+    suspend fun delete(show: TvShowsRoomEntity)
 
-    @Query("SELECT * from tvshowsroomentity ORDER BY id ASC")
+    @Query("SELECT * from starred_show_table ORDER BY id ASC")
     fun getAllShows(): LiveData<List<TvShowsRoomEntity>>
 }
