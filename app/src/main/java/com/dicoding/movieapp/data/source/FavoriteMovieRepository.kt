@@ -8,23 +8,16 @@ import com.dicoding.movieapp.data.source.local.room.MoviesStarredDao
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class FavoriteMovieRepository(application: Application) {
-    private val mMoviesStarredDao: MoviesStarredDao
-    private val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+class FavoriteMovieRepository(private val movieDao: MoviesStarredDao) {
 
-    init {
-        val db = MovieRoomDatabase.getDatabase(application)
-        mMoviesStarredDao = db.moviesStarredDao()
+    val readAllMovies: LiveData<List<MoviesRoomEntity>> = movieDao.getAllMovies()
+
+    suspend fun addMovie(movie: MoviesRoomEntity){
+        movieDao.insert(movie)
     }
 
-    fun getAllMovies(): LiveData<List<MoviesRoomEntity>> = mMoviesStarredDao.getAllMovies()
-
-    fun insert(movie: MoviesRoomEntity){
-        executorService.execute { mMoviesStarredDao.insert(movie) }
-    }
-
-    fun delete(movie: MoviesRoomEntity){
-        executorService.execute { mMoviesStarredDao.delete(movie) }
+    suspend fun delMovie(movie: MoviesRoomEntity){
+        movieDao.delete(movie)
     }
 
 }

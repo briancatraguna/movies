@@ -1,18 +1,16 @@
 package com.dicoding.movieapp.data.source.local.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
+@Dao
 interface MoviesStarredDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insert(movie: MoviesRoomEntity)
+    suspend fun insert(movie: MoviesRoomEntity)
 
     @Delete
-    fun delete(movie: MoviesRoomEntity)
+    suspend fun delete(movie: MoviesRoomEntity)
 
-    @Query("SELECT * from moviesroomentity ORDER BY id ASC")
+    @Query("SELECT * FROM starred_movie_table ORDER BY id ASC")
     fun getAllMovies(): LiveData<List<MoviesRoomEntity>>
 }

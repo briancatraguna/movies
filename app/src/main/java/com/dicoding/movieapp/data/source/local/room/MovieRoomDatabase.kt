@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [MoviesRoomEntity::class],version = 1)
+@Database(entities = [MoviesRoomEntity::class],version = 1,exportSchema = false)
 abstract class MovieRoomDatabase: RoomDatabase() {
     abstract fun moviesStarredDao(): MoviesStarredDao
 
@@ -13,15 +13,22 @@ abstract class MovieRoomDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: MovieRoomDatabase? = null
 
-        @JvmStatic
         fun getDatabase(context: Context): MovieRoomDatabase{
-            if (INSTANCE == null){
-                synchronized(MovieRoomDatabase::class.java){
-                    INSTANCE = Room.databaseBuilder(context.applicationContext,
-                    MovieRoomDatabase::class.java,"movie_database").build()
-                }
+            val tempInstance = INSTANCE
+            if (tempInstance!=null){
+                return tempInstance
             }
-            return INSTANCE as MovieRoomDatabase
+            synchronized(this){
+                val instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        MovieRoomDatabase::class.java,
+                        "movie_database"
+                )
+                        .fallbackToDestructiveMigration()
+                        .build()
+                INSTANCE = instance
+                return instance
+            }
         }
     }
 

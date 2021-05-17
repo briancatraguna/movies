@@ -1,11 +1,9 @@
 package com.dicoding.movieapp.data.source.local.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
+@Dao
 interface TvShowsStarredDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(show: TvShowsRoomEntity)

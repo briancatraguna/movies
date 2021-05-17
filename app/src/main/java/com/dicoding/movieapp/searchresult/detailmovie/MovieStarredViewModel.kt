@@ -1,27 +1,36 @@
 package com.dicoding.movieapp.searchresult.detailmovie
 
 import android.app.Application
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.dicoding.movieapp.data.source.FavoriteMovieRepository
+import com.dicoding.movieapp.data.source.local.room.MovieRoomDatabase
 import com.dicoding.movieapp.data.source.local.room.MoviesRoomEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MovieStarredViewModel(application: Application): ViewModel() {
-    private val mMovieRepository: FavoriteMovieRepository = FavoriteMovieRepository(application)
 
-    fun insert(movie: MoviesRoomEntity){
-        mMovieRepository.insert(movie)
+    val readAllMovies: LiveData<List<MoviesRoomEntity>>
+    private val repository: FavoriteMovieRepository
+
+    init {
+        val movieDao = MovieRoomDatabase.getDatabase(application).moviesStarredDao()
+        repository = FavoriteMovieRepository(movieDao)
+        readAllMovies = repository.readAllMovies
     }
 
-    fun delete(movie: MoviesRoomEntity){
-        mMovieRepository.delete(movie)
-    }
-
-    fun isStarred(movie: MoviesRoomEntity): Boolean{
-        val allMovies = mMovieRepository.getAllMovies().value
-        if (allMovies?.contains(movie) == true){
-            return true
+    fun addMovie(movie: MoviesRoomEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.addMovie(movie)
         }
-        return false
+    }
+
+    fun delMovie(movie: MoviesRoomEntity){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.delMovie(movie)
+        }
     }
 
 }

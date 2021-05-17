@@ -10,6 +10,7 @@ import com.dicoding.movieapp.injection.Injection
 import com.dicoding.movieapp.movies.MovieViewModel
 import com.dicoding.movieapp.searchresult.SearchResultViewModel
 import com.dicoding.movieapp.searchresult.detailmovie.DetailMovieViewModel
+import com.dicoding.movieapp.searchresult.detailmovie.MovieStarredViewModel
 import com.dicoding.movieapp.searchresult.detailshow.DetailShowViewModel
 import com.dicoding.movieapp.tvshow.TvShowViewModel
 
