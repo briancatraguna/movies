@@ -50,7 +50,8 @@ class DetailSearchShowActivity : AppCompatActivity() {
         setStatus(id.toInt())
         val dbViewModel = ShowStarredViewModel(application)
         binding.toolbar.imgStar.setOnClickListener {
-            statusFavorite != statusFavorite
+            statusFavorite = !statusFavorite
+            setStatusStarred(statusFavorite)
             if (statusFavorite){
                 dbViewModel.addShow(showsObject)
                 Toast.makeText(this,"Show added!",Toast.LENGTH_SHORT).show()
