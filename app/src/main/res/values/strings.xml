@@ -39,4 +39,5 @@
     <string name="your_favorites">Favorites</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="currently_you_have_no_favorites_search_it_up_and_add_it_here">Currently you have no favorites! Search it up and add it here!</string>
 </resources>

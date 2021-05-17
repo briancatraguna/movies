@@ -20,7 +20,7 @@ class ProfileActivity : AppCompatActivity() {
             finish()
         }
 
-        val sectionsPagerAdapter = SectionsPagerAdapter(this,supportFragmentManager)
+        val sectionsPagerAdapter = FavoriteSectionsPagerAdapter(this,supportFragmentManager)
         binding.viewPager.adapter = sectionsPagerAdapter
         binding.tabFav.setupWithViewPager(binding.viewPager)
     }
