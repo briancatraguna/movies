@@ -8,11 +8,11 @@ class FavoriteMovieRepository(private val movieDao: MoviesStarredDao) {
 
     val readAllMovies: LiveData<List<MoviesRoomEntity>> = movieDao.getAllMovies()
 
-    suspend fun addMovie(movie: MoviesRoomEntity){
+    fun addMovie(movie: MoviesRoomEntity){
         movieDao.insert(movie)
     }
 
-    suspend fun delMovieById(movieId: Int){
+    fun delMovieById(movieId: Int){
         movieDao.deleteByMovieId(movieId)
     }
 

@@ -6,7 +6,7 @@ import androidx.room.*
 @Dao
 interface MoviesStarredDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(movie: MoviesRoomEntity)
+    fun insert(movie: MoviesRoomEntity)
 
     @Query("DELETE FROM starred_movie_table WHERE movieId = :movie_id")
     fun deleteByMovieId(movie_id: Int)

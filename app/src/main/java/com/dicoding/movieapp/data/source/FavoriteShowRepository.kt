@@ -11,15 +11,13 @@ import java.util.concurrent.Executors
 
 class FavoriteShowRepository(private val showDao: TvShowsStarredDao) {
 
-    fun readAllShows(): LiveData<List<TvShowsRoomEntity>> = showDao.getAllShows()
+    val readAllShows: LiveData<List<TvShowsRoomEntity>> = showDao.getAllShows()
 
-    suspend fun addShows(show: TvShowsRoomEntity){
-        EspressoIdlingResources.increment()
+    fun addShows(show: TvShowsRoomEntity){
         showDao.insert(show)
-        EspressoIdlingResources.decrement()
     }
 
-    suspend fun delShowById(showId: Int){
+    fun delShowById(showId: Int){
         EspressoIdlingResources.increment()
         showDao.deleteByShowId(showId)
         EspressoIdlingResources.decrement()

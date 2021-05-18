@@ -19,7 +19,7 @@ class ShowStarredViewModel(application: Application): ViewModel() {
     init {
         val showDao = TvShowRoomDatabase.getDatabase(application).tvShowsStarredDao()
         repository = FavoriteShowRepository(showDao)
-        readAllShows = repository.readAllShows()
+        readAllShows = repository.readAllShows
     }
 
     fun addShow(show: TvShowsRoomEntity){
