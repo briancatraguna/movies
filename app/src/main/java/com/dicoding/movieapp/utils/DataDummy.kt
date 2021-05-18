@@ -2,6 +2,7 @@ package com.dicoding.movieapp.utils
 
 import com.dicoding.movieapp.data.source.local.MovieEntity
 import com.dicoding.movieapp.data.source.local.TVShowEntity
+import com.dicoding.movieapp.data.source.local.room.movies.MoviesRoomEntity
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.data.source.remote.*
 
@@ -321,6 +322,22 @@ object DataDummy {
                 releaseDate = "2020-03-21",
                 rating = 8.4
         )
+    }
 
+    fun getFakeMovieRoomDatabase(): List<MoviesRoomEntity>{
+        return listOf(
+                getMovieRoomEntity()
+        )
+    }
+
+    fun getMovieRoomEntity(): MoviesRoomEntity {
+        return MoviesRoomEntity(
+                id = 0,
+                movieId = 318846,
+                title = "The Big Short",
+                avatar = "/isuQWbJPbjybBEWdcCaBUPmU0XO.jpg",
+                releaseDate = "2015-12-11",
+                rating = 7.3
+        )
     }
 }
