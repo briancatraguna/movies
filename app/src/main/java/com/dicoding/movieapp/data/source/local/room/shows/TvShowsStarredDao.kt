@@ -8,8 +8,8 @@ interface TvShowsStarredDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(show: TvShowsRoomEntity)
 
-    @Delete
-    suspend fun delete(show: TvShowsRoomEntity)
+    @Query("DELETE FROM starred_show_table WHERE showId = :show_id")
+    fun deleteByShowId(show_id: Int)
 
     @Query("SELECT * from starred_show_table ORDER BY id ASC")
     fun getAllShows(): LiveData<List<TvShowsRoomEntity>>

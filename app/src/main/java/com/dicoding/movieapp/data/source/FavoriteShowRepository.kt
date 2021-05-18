@@ -16,8 +16,8 @@ class FavoriteShowRepository(private val showDao: TvShowsStarredDao) {
         showDao.insert(show)
     }
 
-    suspend fun delShows(show: TvShowsRoomEntity){
-        showDao.delete(show)
+    suspend fun delShowById(showId: Int){
+        showDao.deleteByShowId(showId)
     }
 
 

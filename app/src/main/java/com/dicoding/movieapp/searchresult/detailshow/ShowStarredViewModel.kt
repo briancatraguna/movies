@@ -27,9 +27,9 @@ class ShowStarredViewModel(application: Application): ViewModel() {
         }
     }
 
-    fun delShow(show: TvShowsRoomEntity){
+    fun delShowById(showId: Int){
         viewModelScope.launch(Dispatchers.IO){
-            repository.delShows(show)
+            repository.delShowById(showId)
         }
     }
 

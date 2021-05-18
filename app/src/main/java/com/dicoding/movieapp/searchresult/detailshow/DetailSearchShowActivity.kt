@@ -56,7 +56,7 @@ class DetailSearchShowActivity : AppCompatActivity() {
                 dbViewModel.addShow(showsObject)
                 Toast.makeText(this,"Show added!",Toast.LENGTH_SHORT).show()
             } else {
-                dbViewModel.delShow(showsObject)
+                dbViewModel.delShowById(id.toInt())
                 Toast.makeText(this,"Deleted show!",Toast.LENGTH_SHORT).show()
             }
         }
