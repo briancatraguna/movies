@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowRoomDatabase
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsStarredDao
+import com.dicoding.movieapp.utils.EspressoIdlingResources
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -13,11 +14,15 @@ class FavoriteShowRepository(private val showDao: TvShowsStarredDao) {
     fun readAllShows(): LiveData<List<TvShowsRoomEntity>> = showDao.getAllShows()
 
     suspend fun addShows(show: TvShowsRoomEntity){
+        EspressoIdlingResources.increment()
         showDao.insert(show)
+        EspressoIdlingResources.decrement()
     }
 
     suspend fun delShowById(showId: Int){
+        EspressoIdlingResources.increment()
         showDao.deleteByShowId(showId)
+        EspressoIdlingResources.decrement()
     }
 
 

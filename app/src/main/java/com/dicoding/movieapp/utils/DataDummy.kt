@@ -2,6 +2,7 @@ package com.dicoding.movieapp.utils
 
 import com.dicoding.movieapp.data.source.local.MovieEntity
 import com.dicoding.movieapp.data.source.local.TVShowEntity
+import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.data.source.remote.*
 
 object DataDummy {
@@ -303,5 +304,23 @@ object DataDummy {
                 status = "Ended"
         )
         return detail
+    }
+
+    fun getFakeShowRoomDatabase(): List<TvShowsRoomEntity>{
+        return listOf(
+                getTvShowRoomEntity()
+        )
+    }
+
+    fun getTvShowRoomEntity(): TvShowsRoomEntity {
+        return TvShowsRoomEntity(
+                id = 0,
+                showId = 96162,
+                title = "Itaewon Class",
+                avatar = "/uW91bKQhdkwPLAE2lJJkY5xdyJg.jpg",
+                releaseDate = "2020-03-21",
+                rating = 8.4
+        )
+
     }
 }
