@@ -12,8 +12,8 @@ class FavoriteMovieRepository(private val movieDao: MoviesStarredDao) {
         movieDao.insert(movie)
     }
 
-    suspend fun delMovie(movie: MoviesRoomEntity){
-        movieDao.delete(movie)
+    suspend fun delMovieById(movieId: Int){
+        movieDao.deleteByMovieId(movieId)
     }
 
 }

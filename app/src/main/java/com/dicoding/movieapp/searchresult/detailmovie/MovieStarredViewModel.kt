@@ -27,9 +27,9 @@ class MovieStarredViewModel(application: Application): ViewModel() {
         }
     }
 
-    fun delMovie(movie: MoviesRoomEntity){
+    fun delMovieById(movieId: Int){
         viewModelScope.launch(Dispatchers.IO){
-            repository.delMovie(movie)
+            repository.delMovieById(movieId)
         }
     }
 

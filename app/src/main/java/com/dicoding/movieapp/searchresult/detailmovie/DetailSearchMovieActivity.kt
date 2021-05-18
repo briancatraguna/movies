@@ -56,7 +56,7 @@ class DetailSearchMovieActivity : AppCompatActivity() {
                 dbViewModel.addMovie(moviesObject)
                 Toast.makeText(this,"Added movie!",Toast.LENGTH_SHORT).show()
             } else {
-                dbViewModel.delMovie(moviesObject)
+                dbViewModel.delMovieById(id.toInt())
                 Toast.makeText(this,"Deleted movie!",Toast.LENGTH_SHORT).show()
             }
         }
