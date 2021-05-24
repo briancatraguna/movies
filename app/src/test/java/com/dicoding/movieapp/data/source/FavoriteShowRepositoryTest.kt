@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import com.dicoding.movieapp.data.source.local.room.movies.MoviesRoomEntity
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.utils.DataDummy
+import com.dicoding.movieapp.utils.fortesting.repository.FakeFavoriteShowsRepository
 import com.nhaarman.mockitokotlin2.verify
 import org.junit.Test
 
@@ -21,12 +22,10 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class FavoriteShowRepositoryTest {
     private lateinit var dataDummy: DataDummy
+    private lateinit var favoriteShowRepository: FakeFavoriteShowsRepository
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @Mock
-    private lateinit var repository: FavoriteShowRepository
 
     @Mock
     private lateinit var showsObserver: Observer<List<TvShowsRoomEntity>>
@@ -34,22 +33,22 @@ class FavoriteShowRepositoryTest {
     @Before
     fun init(){
         dataDummy = DataDummy
+        favoriteShowRepository = FakeFavoriteShowsRepository()
     }
 
     @Test
     fun readAllShows() {
         //Expectation
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
 
-        //Reality
-        `when`(repository.readAllShows).thenReturn(listShowsExpectation)
-        val listShowsReality = repository.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
+        //Actual
+        val listShowsActual = favoriteShowRepository.readAllShows()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        repository.readAllShows.observeForever(showsObserver)
+        favoriteShowRepository.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
     }
 
@@ -57,20 +56,17 @@ class FavoriteShowRepositoryTest {
     fun addShows() {
         //Expectation
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
+        listShowsExpectation.value!!.add(dataDummy.getTvShowRoomEntity())
 
-        val dummyShowAdded = dataDummy.getTvShowRoomEntity()
+        //Actual
+        val listShowsActual = favoriteShowRepository.readAllShows()
+        favoriteShowRepository.addShows()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        `when`(repository.addShows(dummyShowAdded)).then {
-            `when`(repository.readAllShows).thenReturn(listShowsExpectation)
-        }
-        repository.addShows(dummyShowAdded)
-        val listShowsReality = repository.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
-
-        repository.readAllShows.observeForever(showsObserver)
+        favoriteShowRepository.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
     }
 
@@ -78,20 +74,17 @@ class FavoriteShowRepositoryTest {
     fun delShowById() {
         //Expectation
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
+        listShowsExpectation.value!!.removeAt(0)
 
-        val dummyShowId = 101
+        //Actual
+        val listShowsActual = favoriteShowRepository.readAllShows()
+        favoriteShowRepository.delShowById()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        `when`(repository.delShowById(dummyShowId)).then {
-            `when`(repository.readAllShows).thenReturn(listShowsExpectation)
-        }
-        repository.delShowById(dummyShowId)
-        val listShowsReality = repository.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
-
-        repository.readAllShows.observeForever(showsObserver)
+        favoriteShowRepository.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
     }
 }

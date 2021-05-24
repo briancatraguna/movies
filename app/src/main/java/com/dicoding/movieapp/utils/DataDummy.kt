@@ -307,8 +307,8 @@ object DataDummy {
         return detail
     }
 
-    fun getFakeShowRoomDatabase(): List<TvShowsRoomEntity>{
-        return listOf(
+    fun getFakeShowRoomDatabase(): ArrayList<TvShowsRoomEntity>{
+        return arrayListOf(
                 getTvShowRoomEntity()
         )
     }
