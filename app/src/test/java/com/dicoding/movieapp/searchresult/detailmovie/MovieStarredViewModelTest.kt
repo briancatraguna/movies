@@ -1,5 +1,6 @@
 package com.dicoding.movieapp.searchresult.detailmovie
 
+import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -20,18 +21,18 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class MovieStarredViewModelTest {
     private lateinit var dataDummy: DataDummy
+    private lateinit var viewModel: MovieStarredViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
-
-    @Mock
-    private lateinit var viewModel: MovieStarredViewModel
 
     @Mock
     private lateinit var moviesObserver: Observer<List<MoviesRoomEntity>>
 
     @Before
     fun init(){
+        val application = Application()
+        viewModel = MovieStarredViewModel(application)
         dataDummy = DataDummy
     }
 

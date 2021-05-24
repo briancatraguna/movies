@@ -324,8 +324,8 @@ object DataDummy {
         )
     }
 
-    fun getFakeMovieRoomDatabase(): List<MoviesRoomEntity>{
-        return listOf(
+    fun getFakeMovieRoomDatabase(): ArrayList<MoviesRoomEntity>{
+        return arrayListOf(
                 getMovieRoomEntity()
         )
     }
