@@ -9,6 +9,7 @@ import com.dicoding.movieapp.data.source.local.TVShowEntity
 import com.dicoding.movieapp.data.source.local.room.shows.TvShowsRoomEntity
 import com.dicoding.movieapp.data.source.remote.SearchDetailMovieResponse
 import com.dicoding.movieapp.utils.DataDummy
+import com.dicoding.movieapp.utils.fortesting.viewmodel.FakeShowsStarredViewModel
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -24,18 +25,17 @@ import java.util.*
 @RunWith(MockitoJUnitRunner::class)
 class ShowStarredViewModelTest {
     private lateinit var dataDummy: DataDummy
+    private lateinit var viewModel: FakeShowsStarredViewModel
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Mock
-    private lateinit var viewModel: ShowStarredViewModel
-
-    @Mock
-    private lateinit var showsObserver: Observer<List<TvShowsRoomEntity>>
+    private lateinit var showsObserver: Observer<ArrayList<TvShowsRoomEntity>>
 
     @Before
     fun init(){
+        viewModel = FakeShowsStarredViewModel()
         dataDummy = DataDummy
     }
 
@@ -43,16 +43,15 @@ class ShowStarredViewModelTest {
     fun getReadAllShows() {
         //Expectation
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
 
-        //Reality
-        `when`(viewModel.readAllShows).thenReturn(listShowsExpectation)
-        val listShowsReality = viewModel.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
+        //Actual
+        val listShowsActual = viewModel.readAllShows()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        viewModel.readAllShows.observeForever(showsObserver)
+        viewModel.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
     }
 
@@ -60,40 +59,35 @@ class ShowStarredViewModelTest {
     fun addShow() {
         //Expectation
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
+        listShowsExpectation.value!!.add(dataDummy.getTvShowRoomEntity())
 
-        val dummyShowAdded = dataDummy.getTvShowRoomEntity()
+        //Actual
+        val listShowsActual = viewModel.readAllShows()
+        viewModel.addShow()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        `when`(viewModel.addShow(dummyShowAdded)).then {
-            `when`(viewModel.readAllShows).thenReturn(listShowsExpectation)
-        }
-        viewModel.addShow(dummyShowAdded)
-        val listShowsReality = viewModel.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
-
-        viewModel.readAllShows.observeForever(showsObserver)
+        viewModel.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
+
     }
 
     @Test
     fun delShowById() {
         val dummyListShows = dataDummy.getFakeShowRoomDatabase()
-        val listShowsExpectation = MutableLiveData<List<TvShowsRoomEntity>>()
+        val listShowsExpectation = MutableLiveData<ArrayList<TvShowsRoomEntity>>()
         listShowsExpectation.value = dummyListShows
+        listShowsExpectation.value!!.removeAt(0)
 
-        val dummyShowId = 101
+        //Actual
+        val listShowsActual = viewModel.readAllShows()
+        viewModel.delShowById()
+        assertNotNull(listShowsActual)
+        assertEquals(listShowsExpectation.value,listShowsActual.value)
 
-        `when`(viewModel.delShowById(dummyShowId)).then {
-            `when`(viewModel.readAllShows).thenReturn(listShowsExpectation)
-        }
-        viewModel.delShowById(dummyShowId)
-        val listShowsReality = viewModel.readAllShows
-        assertNotNull(listShowsReality.value)
-        assertEquals(listShowsExpectation.value,listShowsReality.value)
-
-        viewModel.readAllShows.observeForever(showsObserver)
+        viewModel.readAllShows().observeForever(showsObserver)
         verify(showsObserver).onChanged(dummyListShows)
     }
 }
