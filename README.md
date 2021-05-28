@@ -15,7 +15,7 @@ This project explores some of the amazing libraries that [Android Jetpack](https
 - [Kotlin](https://kotlinlang.org/)
 - [Android Studio](https://developer.android.com/studio)
 
-And all credits for the API from [The Movie Database](https://www.themoviedb.org/) and here's the [API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)
+And all credits for the API goes to [The Movie Database](https://www.themoviedb.org/) and here's the [API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)
 
 ## Features
 
