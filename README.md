@@ -5,11 +5,11 @@ This is my project for my submission in [Learning Android Jetpack](https://www.d
 <img src="https://4.bp.blogspot.com/-NnAkV5vpYuw/XNMYF4RtLvI/AAAAAAAAI70/kdgLm3cnTO4FB4rUC0v9smscN3zHJPlLgCLcBGAs/s1600/Jetpack_logo%2B%25282%2529.png" width="100">
 </br>
 This project explores some of the amazing libraries that [Android Jetpack](https://developer.android.com/jetpack) offers such as:
-- RecyclerView
-- ViewModels
-- LiveData
-- Retrofit
-- Room
+- [RecyclerView](https://developer.android.com/jetpack/androidx/releases/recyclerview)
+- [ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
+- [LiveData](https://developer.android.com/reference/android/arch/lifecycle/LiveData)
+- [Retrofit](https://square.github.io/retrofit/)
+- [Room](https://developer.android.com/jetpack/androidx/releases/room)
 
 ## Built with
 - [Kotlin](https://kotlinlang.org/)
